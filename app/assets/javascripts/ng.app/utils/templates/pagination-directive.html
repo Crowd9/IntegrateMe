@@ -1,0 +1,9 @@
+<ul class="pagination" data-ng-hide="paging.totalPages <= 1">
+  <li class="paginate_button previous" data-ng-class="{disabled: paging.currentPage == paging.minPage}"><a href="#" data-ng-click="goToPage(paging.currentPage - 1)">Previous</a></li>
+  <li class="paginate_button active" data-ng-show="paging.showFirstPage" ng-class="{active: paging.currentPage == paging.minPage}"><a href="#" data-ng-click="goToPage(1)">1</a></li>
+  <li ng-show="paging.showFirstDots"><a href="#">...</a></li>
+  <li class="paginate_button" data-ng-repeat="p in paging.pages" data-ng-class="{active: paging.currentPage == p.number}"><a href="#" data-ng-click="goToPage(p.number)">{{p.label}}</a></li>
+  <li data-ng-show="paging.showLastDots"><a href="#">...</a></li>
+  <li data-ng-class="{active: paging.currentPage == paging.maxPage}" ng-show="paging.showLastPage"><a href="#" ng-click="goToPage(paging.maxPage)">{{paging.totalPages}}</a></li>
+  <li class="paginate_button next" data-ng-class="{disabled: paging.currentPage == paging.maxPage}"><a href="#" data-ng-click="goToPage(paging.currentPage + 1)">Next</a></li>
+</ul>

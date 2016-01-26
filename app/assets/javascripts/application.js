@@ -9,6 +9,7 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
 //= require angular
-//= require_tree .
+//= require angular-route
+//= require angular-sanitize

@@ -1,0 +1,44 @@
+<div class="page-container new-mailchimp-api">
+  <h3>New Mailchimp API</h3>
+
+  <form class="form-horizontal" name="settingForm" ng-submit="saveSetting()" novalidate>
+    <div class="form-group" ng-class="{'has-error': isSubmitted && settingForm.key.$invalid}">
+      <label class="col-sm-2 control-label">API key</label>
+      <div class="col-sm-10">
+        <input type="text" name="key" class="form-control" ng-model="setting.raw['API Key']" required>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': isSubmitted && settingForm.list.$invalid}">
+      <label class="col-sm-2 control-label">List Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="list" ng-model="setting.raw['List Name']" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Main Group</label>
+      <div class="col-sm-10">
+        <input type="text" name="main_group" class="form-control" ng-model="setting.raw['Main Group']">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Sub Group</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="sub_group" ng-model="setting.raw['Sub Group']">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="require_double_optin" ng-model="setting.raw['Require double optin']"> Require double opt-in
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" ng-disabled="isSubmitting">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

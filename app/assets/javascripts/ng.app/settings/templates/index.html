@@ -1,0 +1,29 @@
+<div class="page-container settings-index">
+  <h3>Settings</h3>
+
+  <div ng-if="settings.length > 0">
+    <div ng-repeat="(code, codeSettings) in settingGroups">
+      <fieldset>
+        <legend>{{$root.settingCodes[code]}}</legend>
+        <dl ng-repeat="setting in codeSettings">
+          <div ng-repeat="(key, value) in setting.raw">
+            <dt>{{key}}</dt>
+            <dd>{{value}}</dd>
+          </div>
+          <dt>Active?</dt>
+          <dd>{{setting.is_active || "false"}}</dd>
+        </dl>
+      </table>
+    </div>
+  </div>
+
+  <div ng-if="!isLoadingSettings && settings.length == 0">
+    <p>No settings found</p>
+  </div>
+
+  <div ng-if="isLoadingSettings">Loading...</div>
+
+  <div class="actions">
+    <a href="/settings/mailchimp_api">Mailchimp Api Key</a>
+  </div>
+</div>

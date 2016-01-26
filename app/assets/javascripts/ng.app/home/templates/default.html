@@ -1,0 +1,10 @@
+<h1>Competition App</h1>
+
+<h2>Enter competitions below</h2>
+
+<div ng-if="isLoading">Loading...</div>
+<div ng-if="!isLoading && competitions.length == 0">No competitions found</div>
+<ul ng-if="competitions">
+    <li ng-repeat="competition in competitions"><a ng-href="/competitions/{{competition.id}}/entries/new">{{competition.name}}</a></li>
+</ul>
+<div custom-pagination paging="competitionsPaging" go-to-page="loadCompetitions" ng-if="competitionsPaging.total > 1" ng-hide="isLoading"></div>
