@@ -7,6 +7,6 @@ class Competition < ActiveRecord::Base
   def self.search(params = {})
     scope = self.all
 
-    return scope;
+    return scope
   end
 end
