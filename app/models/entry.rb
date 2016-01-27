@@ -50,7 +50,7 @@ class Entry < ActiveRecord::Base
           end
 
           if @unsubscribed_email.present?
-            mailchimp_client.unsubscribe(mailchimp_setting.raw["List Id"], {"EMAIL" => self.email})
+            mailchimp_client.unsubscribe(mailchimp_setting.raw["List Id"], {"EMAIL" => @unsubscribed_email})
           end
         end
       end
