@@ -17,7 +17,7 @@ class Setting < ActiveRecord::Base
     scope = self.all
     params.each do |k, v|
       key = k.to_s
-      v = value
+      value = v
 
       if key == "code"
         scope = scope.where(:code => self.codes[value.to_sym])
@@ -34,11 +34,11 @@ class Setting < ActiveRecord::Base
   private
 
     def remove_list_id
-      self.raw.delete("List Id") if self.raw_changed? && self.raw && self.raw_was.try(:[], "List Name") != self.raw["List Name"]
+      self.raw.delete("List Id") if self.raw_changed? && self.code.to_s == "mailchimp_api" && self.raw && self.raw_was.try(:[], "List Name") != self.raw["List Name"]
     end
 
     def get_list_id
-      if self.raw["List Name"].present? && !self.raw["List Id"]
+      if self.raw["List Name"].present? && !self.raw["List Id"] && self.code.to_s == "mailchimp_api"
         mailchimp_setting = Setting.mailchimp_setting
         if mailchimp_setting.present?
           mailchimp_client = MailchimpClient::List.new(mailchimp_setting.raw["API Key"])

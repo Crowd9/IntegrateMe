@@ -45,6 +45,12 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem "factory_girl_rails"
+  gem "faker"
+  gem "test_after_commit"
+end
+
 gem "will_paginate"
 gem "thin"
 gem "js-routes"

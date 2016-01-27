@@ -8,7 +8,8 @@ class Api::V1::SettingsController < Api::V1::BaseController
 
   def create
     setting = Setting.where(:code => settings_params[:code]).first
-    setting ||= Setting.new(settings_params)
+    setting ||= Setting.new
+    setting.assign_attributes(settings_params)
 
     if setting.save
       respond_json_results(setting)

@@ -11,9 +11,9 @@ module MailchimpClient
       @mailchimp_api.lists.batch_subscribe(list_id, subs, send_notify, update_existing, replace_interests)
     end
 
-    def unsubscribe(list_id, subscribers, delete_member = flase, send_goodbye = true, send_notify = false)
+    def unsubscribe(list_id, subscribers, delete_member = false, send_goodbye = true, send_notify = false)
       subs = standardize_subscribers(subscribers)
-      MailchimpApi.lists.batch_unsubscribe(list_id, subs, delete_member, send_goodbye, send_notify)
+      @mailchimp_api.lists.batch_unsubscribe(list_id, subs, delete_member, send_goodbye, send_notify)
     end
 
     def find_list_id_by_name(list_name)
