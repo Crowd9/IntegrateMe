@@ -44,6 +44,7 @@ group :test do
   gem 'simplecov'
   gem 'capybara'
   gem 'json_spec'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :development do

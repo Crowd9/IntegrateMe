@@ -17,6 +17,7 @@ class Entry < ActiveRecord::Base
     end
 
     def requires_name
+      return if competition.nil? # caught by earlier validation
       competition.requires_entry_name?
     end
 end

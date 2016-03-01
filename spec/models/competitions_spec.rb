@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Competition do
   it "requires a name" do
-    expect { Competition.create!(name: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    competition = Competition.new(name: nil)
+    expect(competition.valid?).to be false
   end
 end
