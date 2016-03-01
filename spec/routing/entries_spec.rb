@@ -15,8 +15,8 @@ describe 'entries' do
     expect(:post => '/entries').to route_to(destination.merge(action: 'create'))
   end
 
-  it 'routes to #show' do
-    expect(:get => '/entries/1').to route_to(destination.merge(action: 'show', id: '1'))
+  it 'does not route to #show' do
+    expect(:get => '/entries/1').not_to route_to(destination.merge(action: 'show', id: '1'))
   end
 
   it 'does not route to #edit' do
