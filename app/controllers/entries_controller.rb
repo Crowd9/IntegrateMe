@@ -9,10 +9,8 @@ class EntriesController < ApplicationController
       return
     end
 
-    mail_chimp_sender = MailChimpSender.new(entry: @entry,
-      list_id: ENV['INTEGRATEMEINFO_LIST_ID'])
-    mail_chimp_err = mail_chimp_sender.subscribe
-    render json: {success: true, mail_chimp_delayed: !mail_chimp_err.nil?}
+    SubscribeUserInMailChimpJob.perform_later(@entry, list_id: ENV['INTEGRATEMEINFO_LIST_ID'])
+    render json: {success: true}
   end
 
   private

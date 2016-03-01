@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'name and email entered' do
-
   let(:competition_data) { {id: 6, name: "Name+Email comp", requires_entry_name: true} }
 
   let(:name) { 'Jane Doe' }

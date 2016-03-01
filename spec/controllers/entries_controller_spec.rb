@@ -3,7 +3,6 @@ require 'rails_helper'
 describe EntriesController do
 
   let(:entry) { double(Entry) }
-  let(:mailchimp) { double(MailChimpSender) }
   let(:list_id) { 'a_list_id' }
 
   let(:entry_data) { {competition_id: '23', name: 'Jane Doe', email: 'jdoe@example.org'} }
@@ -15,12 +14,11 @@ describe EntriesController do
       expect(entry).to receive(:save).and_return(true)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
-      expect(mailchimp).to receive(:subscribe).and_return(nil)
-      expect(MailChimpSender).to receive(:new).
-        with(entry: entry, list_id: list_id).and_return(mailchimp)
+      expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
+        with(entry, list_id: list_id)
 
       post :create, entry: entry_data
-      expect(response.body).to be_json_eql({success: true, mail_chimp_delayed: false}.to_json)
+      expect(response.body).to be_json_eql({success: true}.to_json)
     end
 
     it 'submits successfully with an extra parameter, MailChimp send works' do
@@ -29,12 +27,11 @@ describe EntriesController do
       expect(entry).to receive(:save).and_return(true)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
-      expect(mailchimp).to receive(:subscribe).and_return(nil)
-      expect(MailChimpSender).to receive(:new).
-        with(entry: entry, list_id: list_id).and_return(mailchimp)
+      expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
+        with(entry, list_id: list_id)
 
       post :create, entry: entry_data
-      expect(response.body).to be_json_eql({success: true, mail_chimp_delayed: false}.to_json)
+      expect(response.body).to be_json_eql({success: true}.to_json)
     end
 
     it 'submits successfully, but MailChimp send fails' do
@@ -43,12 +40,11 @@ describe EntriesController do
       expect(entry).to receive(:save).and_return(true)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
-      expect(mailchimp).to receive(:subscribe).and_return("banana")
-      expect(MailChimpSender).to receive(:new).
-        with(entry: entry, list_id: list_id).and_return(mailchimp)
+      expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
+        with(entry, list_id: list_id)
 
       post :create, entry: entry_data
-      expect(response.body).to be_json_eql({success: true, mail_chimp_delayed: true}.to_json)
+      expect(response.body).to be_json_eql({success: true}.to_json)
     end
 
     it 'fails to submit' do
@@ -59,7 +55,7 @@ describe EntriesController do
       expect(entry).to receive(:errors).and_return(errors)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
-      expect(MailChimpSender).not_to receive(:new)
+      expect(SubscribeUserInMailChimpJob).not_to receive(:perform_later)
 
       post :create, entry: entry_data
       expect(response.body).to be_json_eql({success: false, :errors => ['err']}.to_json)

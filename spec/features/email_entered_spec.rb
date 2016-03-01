@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'email entered' do
-
   let(:competition_data) { {id: 5, name: "Email only comp", requires_entry_name: false} }
 
   let(:valid_email) { 'jdoe@example.org' }
