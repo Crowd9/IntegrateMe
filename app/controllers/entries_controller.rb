@@ -5,7 +5,10 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
 
     if @entry.save
-      render json: {success: true}
+      mail_chimp_sender = MailChimpSender.new(entry: @entry,
+        list_id: INTEGRATEMEINFO_LIST_ID)
+      mail_chimp_err = mail_chimp_sender.subscribe
+      render json: {success: true, mail_chimp_delayed: !mail_chimp_err.nil?}
     else
       render json: {success: false, errors: @entry.errors}
     end
