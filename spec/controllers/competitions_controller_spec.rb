@@ -24,7 +24,6 @@ describe CompetitionsController do
 
       get :entrant_page, competition_id: competition.id.to_s, permalink: 'my_competition'
       expect(response).to be_not_found
-      # expect(response).to render_template('404')
       expect(assigns[:entry]).to be_nil
     end
 

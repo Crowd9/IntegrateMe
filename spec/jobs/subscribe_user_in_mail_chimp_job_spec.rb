@@ -16,7 +16,7 @@ RSpec.describe SubscribeUserInMailChimpJob do
     expect(lists).to receive(:members).with(no_args).and_return(members)
     expect(gibbon).to receive(:lists).with(list_id).and_return(lists)
 
-    expect(entry).to receive(:name).and_return('Jane Doe')
+    expect(entry).to receive(:name).twice.and_return('Jane Doe')
     expect(entry).to receive(:email).and_return('jdoe@example.org')
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, true)
@@ -35,7 +35,7 @@ RSpec.describe SubscribeUserInMailChimpJob do
     expect(gibbon).to receive(:lists).with(list_id).and_return(lists)
     expect(Gibbon::Request).to receive(:new).and_return(gibbon)
 
-    expect(entry).to receive(:name).and_return('Jane Doe')
+    expect(entry).to receive(:name).twice.and_return('Jane Doe')
     expect(entry).to receive(:email).and_return('jdoe@example.org')
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, false)
@@ -85,7 +85,7 @@ RSpec.describe SubscribeUserInMailChimpJob do
     expect(lists).to receive(:members).with(no_args).and_return(members)
     expect(gibbon).to receive(:lists).with(list_id).and_return(lists)
 
-    expect(entry).to receive(:name).and_return('Jane Doe')
+    expect(entry).to receive(:name).twice.and_return('Jane Doe')
     expect(entry).to receive(:email).and_return('jdoe@example.org')
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, true)

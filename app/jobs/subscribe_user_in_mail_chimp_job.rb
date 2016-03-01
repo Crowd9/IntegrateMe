@@ -27,11 +27,19 @@ class SubscribeUserInMailChimpJob < ActiveJob::Base
         if exception.nil?
           gibbon = Gibbon::Request.new
 
+          request_data = {
+            body: {
+              email_address: entry.email,
+              status: "subscribed",
+            }
+          }
+
+          unless entry.name.blank?
+            request_data[:body][:merge_fields] = {NAME: entry.name}
+          end
+
           begin
-            gibbon.lists(list_id).members.create(
-             email: { email: entry.email },
-             merge_fields: {NAME: entry.name}
-            )
+            gibbon.lists(list_id).members.create(request_data)
           rescue Gibbon::MailChimpError => gme
             exception = gme
             Rails.logger.error("MailChimp subscribe failed, Gibbon error: #{gme.message}")
