@@ -16,6 +16,21 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+unless ENV['COVERAGE'].nil? || ENV['COVERAGE'].empty?
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_filter '/config/'
+    add_group 'Models', '/app/models/'
+    add_group 'Controllers', '/app/controllers/'
+    add_group 'Services', '/app/services/'
+    add_group 'Helpers', '/app/helpers/'
+    # add_group 'Mailers', '/app/mailers/'
+    # add_group 'Lib', '/lib/'
+  end
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
