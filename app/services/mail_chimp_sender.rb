@@ -5,7 +5,15 @@ class MailChimpSender
   end
 
   def subscribe
-    error = nil
+    api_key = ENV['MAILCHIMP_API_KEY']
+
+    if api_key.blank?
+      return "ENV['MAILCHIMP_API_KEY'] is not set"
+    end
+
+    if @list_id.blank?
+      return "List id is not set"
+    end
 
     # NB requires ENV['MAILCHIMP_API_KEY'] to be set; this value is not stored
     # in version control
