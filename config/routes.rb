@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
-  resources :entries, only: [:create, :show], format: true, constraints: { format: 'json' }
+  resources :entries, only: [:create, :show] #, format: true, constraints: { format: 'json' }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
