@@ -43,6 +43,7 @@ end
 group :test do
   gem 'simplecov'
   gem 'capybara'
+  gem 'json_spec'
 end
 
 group :development do
