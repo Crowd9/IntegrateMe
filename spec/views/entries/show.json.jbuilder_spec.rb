@@ -1,7 +1,9 @@
-require 'rails_helper'
+# # Not sure if this is used anywhere -- not routed as forked
 
-describe 'entries/show' do
-  let(:entry) { double(Entry) }
+# require 'rails_helper'
 
-  it 'renders an entry'
-end
+# describe 'entries/show' do
+#   let(:entry) { double(Entry) }
+
+#   it 'renders an entry'
+# end

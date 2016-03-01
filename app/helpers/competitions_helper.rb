@@ -4,8 +4,13 @@ module CompetitionsHelper
   end
 
   def entrant_init(entry)
+    competition = entry.competition
     {
-        competition: { id: entry.competition.id, name: entry.competition.name, requires_entry_name: entry.competition.requires_entry_name? }
+      competition: {
+        id: competition.id,
+        name: competition.name,
+        requires_entry_name: competition.requires_entry_name?
+      }
     }.to_json
   end
 end
