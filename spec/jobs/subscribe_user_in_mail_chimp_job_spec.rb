@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SubscribeUserInMailChimpJob do
-  let(:entry) { double(Entry, :id => 8) }
+  let(:entry) { double(Entry, id: 8) }
   let(:list_id) { 'a_list_id' }
 
   let(:gibbon)  { double(Gibbon::Request) }

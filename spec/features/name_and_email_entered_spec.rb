@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'name and email entered', :js => true do
+feature 'name and email entered', js: true do
   let(:competition_data) { {name: "Name+Email comp", requires_entry_name: true} }
 
   let(:name) { 'Jane Doe' }
@@ -15,43 +15,43 @@ feature 'name and email entered', :js => true do
   end
 
   scenario 'with name and valid email' do
-    fill_in('Name', :with => name)
-    fill_in('Email', :with => valid_email)
+    fill_in('Name', with: name)
+    fill_in('Email', with: valid_email)
     click_on('Enter!')
     expect(page).to have_content('Thank you for entering our competition!')
   end
 
   scenario 'with name and blank email' do
-    fill_in('Name', :with => name)
-    fill_in('Email', :with => '')
+    fill_in('Name', with: name)
+    fill_in('Email', with: '')
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end
 
   scenario 'with name and invalid email' do
-    fill_in('Name', :with => name)
-    fill_in('Email', :with => invalid_email)
+    fill_in('Name', with: name)
+    fill_in('Email', with: invalid_email)
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end
 
   scenario 'with blank name and valid email' do
-    fill_in('Name', :with => '')
-    fill_in('Email', :with => valid_email)
+    fill_in('Name', with: '')
+    fill_in('Email', with: valid_email)
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end
 
   scenario 'with blank name and blank email' do
-    fill_in('Name', :with => '')
-    fill_in('Email', :with => '')
+    fill_in('Name', with: '')
+    fill_in('Email', with: '')
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end
 
   scenario 'with blank name and invalid email' do
-    fill_in('Name', :with => '')
-    fill_in('Email', :with => invalid_email)
+    fill_in('Name', with: '')
+    fill_in('Email', with: invalid_email)
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end

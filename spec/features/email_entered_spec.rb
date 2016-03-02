@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'email entered', :js => true do
+feature 'email entered', js: true do
   let(:competition_data) { {id: 5, name: "Email only comp", requires_entry_name: false} }
 
   # can't use example.* as mailchimp rejects them
@@ -14,19 +14,19 @@ feature 'email entered', :js => true do
   end
 
   scenario 'with valid email' do
-    fill_in('Email', :with => valid_email)
+    fill_in('Email', with: valid_email)
     click_on('Enter!')
     expect(page).to have_content('Thank you for entering our competition!')
   end
 
   scenario 'with blank email' do
-    fill_in('Email', :with => '')
+    fill_in('Email', with: '')
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end
 
   scenario 'with invalid email' do
-    fill_in('Email', :with => invalid_email)
+    fill_in('Email', with: invalid_email)
     click_on('Enter!')
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end

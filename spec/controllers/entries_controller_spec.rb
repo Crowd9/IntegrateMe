@@ -17,7 +17,7 @@ describe EntriesController do
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
       expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
-        with(entry_id, list_id: list_id)
+        with(entry_id, list_id)
 
       post :create, entry: entry_data
       expect(response.body).to be_json_eql({success: true}.to_json)
@@ -34,7 +34,7 @@ describe EntriesController do
       expect(SubscribeUserInMailChimpJob).not_to receive(:perform_later)
 
       post :create, entry: entry_data
-      expect(response.body).to be_json_eql({success: false, :errors => ['err']}.to_json)
+      expect(response.body).to be_json_eql({success: false, errors: ['err']}.to_json)
     end
   end
 

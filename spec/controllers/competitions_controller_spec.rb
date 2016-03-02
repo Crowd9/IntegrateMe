@@ -7,7 +7,7 @@ describe CompetitionsController do
     let(:competition) { double(Competition, id: 23) }
 
     it 'shows an entry page' do
-      expect(Entry).to receive(:new).with(:competition => competition).and_return(entry)
+      expect(Entry).to receive(:new).with(competition: competition).and_return(entry)
       expect(Competition).to receive(:find_by_id).with(competition.id.to_s).
         and_return(competition)
 
