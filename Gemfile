@@ -43,6 +43,9 @@ end
 group :test do
   gem 'simplecov'
   gem 'capybara'
+  gem 'capybara-angular'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'json_spec'
   gem 'rspec-activemodel-mocks'
 end

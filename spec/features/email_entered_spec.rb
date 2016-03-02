@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-feature 'email entered' do
+feature 'email entered', :js => true do
   let(:competition_data) { {id: 5, name: "Email only comp", requires_entry_name: false} }
 
-  let(:valid_email) { 'jdoe@example.org' }
+  # can't use example.* as mailchimp rejects them
+  let(:valid_email) { 'jdoe@madeupdomain.org' }
   let(:invalid_email) { 'jdoe' }
 
   before do
