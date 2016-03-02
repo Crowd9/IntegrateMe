@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SubscribeUserInMailChimpJob do
-  let(:entry) { double(Entry) }
+  let(:entry) { double(Entry, :id => 8) }
   let(:list_id) { 'a_list_id' }
 
   let(:gibbon)  { double(Gibbon::Request) }
@@ -18,12 +18,13 @@ RSpec.describe SubscribeUserInMailChimpJob do
 
     expect(entry).to receive(:name).twice.and_return('Jane Doe')
     expect(entry).to receive(:email).and_return('jdoe@example.org')
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(entry)
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, true)
 
     expect(Gibbon::Request).to receive(:new).and_return(gibbon)
     subscriber = SubscribeUserInMailChimpJob.new
-    subscriber.perform(entry, list_id: list_id)
+    subscriber.perform(entry.id, list_id: list_id)
   end
 
   it "fails to submit" do
@@ -37,6 +38,7 @@ RSpec.describe SubscribeUserInMailChimpJob do
 
     expect(entry).to receive(:name).twice.and_return('Jane Doe')
     expect(entry).to receive(:email).and_return('jdoe@example.org')
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(entry)
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, false)
 
@@ -44,7 +46,7 @@ RSpec.describe SubscribeUserInMailChimpJob do
       with(/^MailChimp subscribe failed, Gibbon error: err/)
 
     subscriber = SubscribeUserInMailChimpJob.new
-    subscriber.perform(entry, list_id: list_id)
+    subscriber.perform(entry.id, list_id: list_id)
   end
 
   it 'fails if the api key is not set' do
@@ -54,12 +56,13 @@ RSpec.describe SubscribeUserInMailChimpJob do
     expect(Gibbon::Request).not_to receive(:new)
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, false)
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(entry)
 
     expect(Rails.logger).to receive(:error).
       with("MailChimp subscribe failed, bad options: ENV['MAILCHIMP_API_KEY'] is not set")
 
     subscriber = SubscribeUserInMailChimpJob.new
-    subscriber.perform(entry, list_id: list_id)
+    subscriber.perform(entry.id, list_id: list_id)
   end
 
   it 'fails if the list id is not set' do
@@ -69,12 +72,13 @@ RSpec.describe SubscribeUserInMailChimpJob do
     expect(Gibbon::Request).not_to receive(:new)
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, false)
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(entry)
 
     expect(Rails.logger).to receive(:error).
       with("MailChimp subscribe failed, bad options: List id not provided")
 
     subscriber = SubscribeUserInMailChimpJob.new
-    subscriber.perform(entry)
+    subscriber.perform(entry.id)
   end
 
   it "submits successfully if failed earlier" do
@@ -87,12 +91,13 @@ RSpec.describe SubscribeUserInMailChimpJob do
 
     expect(entry).to receive(:name).twice.and_return('Jane Doe')
     expect(entry).to receive(:email).and_return('jdoe@example.org')
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(entry)
 
     expect(entry).to receive(:update_attribute).with(:mail_chimp_subscribed, true)
 
     expect(Gibbon::Request).to receive(:new).and_return(gibbon)
     subscriber = SubscribeUserInMailChimpJob.new
-    subscriber.perform(entry, list_id: list_id)
+    subscriber.perform(entry.id, list_id: list_id)
   end
 
   it 'does not try to submit again if already subscribed' do
@@ -100,8 +105,18 @@ RSpec.describe SubscribeUserInMailChimpJob do
 
     expect(Gibbon::Request).not_to receive(:new)
     expect(entry).not_to receive(:update_attribute)
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(entry)
 
     subscriber = SubscribeUserInMailChimpJob.new
-    subscriber.perform(entry, list_id: list_id)
+    subscriber.perform(entry.id, list_id: list_id)
   end
+
+  it 'does not try to submit again if entry not found' do
+    expect(Gibbon::Request).not_to receive(:new)
+    expect(Entry).to receive(:find_by_id).with(entry.id).and_return(nil)
+
+    subscriber = SubscribeUserInMailChimpJob.new
+    subscriber.perform(entry.id, list_id: list_id)
+  end
+
 end

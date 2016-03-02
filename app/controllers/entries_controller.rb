@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
       return
     end
 
-    SubscribeUserInMailChimpJob.perform_later(@entry, list_id: ENV['INTEGRATEMEINFO_LIST_ID'])
+    SubscribeUserInMailChimpJob.perform_later(@entry.id, list_id: ENV['INTEGRATEMEINFO_LIST_ID'])
     render json: {success: true}
   end
 

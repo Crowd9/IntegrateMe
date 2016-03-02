@@ -3,10 +3,11 @@ class SubscribeUserInMailChimpJob < ActiveJob::Base
 
   queue_as :default
 
-  def perform(entry, opts = {})
+  def perform(entry_id, opts = {})
     Entry.transaction do
       # handles re-submission of failed entries, avoid race condition
-      unless entry.mail_chimp_subscribed?
+      entry = Entry.find_by_id(entry_id)
+      unless entry.nil? || entry.mail_chimp_subscribed?
         exception = nil
 
         begin

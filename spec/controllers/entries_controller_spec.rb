@@ -3,6 +3,7 @@ require 'rails_helper'
 describe EntriesController do
 
   let(:entry) { double(Entry) }
+  let(:entry_id) { 3 }
   let(:list_id) { 'a_list_id' }
 
   let(:entry_data) { {competition_id: '23', name: 'Jane Doe', email: 'jdoe@example.org'} }
@@ -12,10 +13,11 @@ describe EntriesController do
       allow(ENV).to receive(:[]).with("INTEGRATEMEINFO_LIST_ID").and_return(list_id)
 
       expect(entry).to receive(:save).and_return(true)
+      expect(entry).to receive(:id).and_return(entry_id)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
       expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
-        with(entry, list_id: list_id)
+        with(entry_id, list_id: list_id)
 
       post :create, entry: entry_data
       expect(response.body).to be_json_eql({success: true}.to_json)
@@ -25,10 +27,11 @@ describe EntriesController do
       allow(ENV).to receive(:[]).with("INTEGRATEMEINFO_LIST_ID").and_return(list_id)
 
       expect(entry).to receive(:save).and_return(true)
+      expect(entry).to receive(:id).and_return(entry_id)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
       expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
-        with(entry, list_id: list_id)
+        with(entry_id, list_id: list_id)
 
       post :create, entry: entry_data
       expect(response.body).to be_json_eql({success: true}.to_json)
@@ -38,10 +41,11 @@ describe EntriesController do
       allow(ENV).to receive(:[]).with("INTEGRATEMEINFO_LIST_ID").and_return(list_id)
 
       expect(entry).to receive(:save).and_return(true)
+      expect(entry).to receive(:id).and_return(entry_id)
       expect(Entry).to receive(:new).with(entry_data).and_return(entry)
 
       expect(SubscribeUserInMailChimpJob).to receive(:perform_later).
-        with(entry, list_id: list_id)
+        with(entry_id, list_id: list_id)
 
       post :create, entry: entry_data
       expect(response.body).to be_json_eql({success: true}.to_json)

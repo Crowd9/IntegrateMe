@@ -3,7 +3,7 @@ namespace :mail_chimp do
     count = 0
     Entry.where(:mail_chimp_subscribed => false).find_each do |entry|
       count += 1
-      SubscribeUserInMailChimpJob.perform_later(entry,
+      SubscribeUserInMailChimpJob.perform_later(entry.id,
         list_id: ENV['INTEGRATEMEINFO_LIST_ID'])
     end
     result = case count
