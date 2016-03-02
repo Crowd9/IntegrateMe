@@ -111,12 +111,11 @@ RSpec.describe SubscribeUserInMailChimpJob do
     subscriber.perform(entry.id, list_id: list_id)
   end
 
-  it 'does not try to submit again if entry not found' do
+  it 'does not try to submit if entry not found' do
     expect(Gibbon::Request).not_to receive(:new)
     expect(Entry).to receive(:find_by_id).with(entry.id).and_return(nil)
 
     subscriber = SubscribeUserInMailChimpJob.new
     subscriber.perform(entry.id, list_id: list_id)
   end
-
 end
