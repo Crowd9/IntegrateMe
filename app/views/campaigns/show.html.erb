@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject line:</strong>
+  <%= @campaign.subject_line %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @campaign.title %>
+</p>
+
+<p>
+  <strong>From name:</strong>
+  <%= @campaign.from_name %>
+</p>
+
+<p>
+  <strong>Reply to:</strong>
+  <%= @campaign.reply_to %>
+</p>
+
+
+<%= link_to 'Join [name+email]', enterant_path(1, permalink: 'nameemail-comp', campaign_id: @campaign) %> |
+
+<%= link_to 'Back', campaigns_path %>

@@ -1,4 +1,4 @@
-<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry) %>)">
+<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry, params[:campaign_id]) %>)">
   <h1>{{ctrl.competition.name}}</h1>
 
   <div ng-if="!ctrl.entry.completed">
@@ -31,4 +31,10 @@
   <div ng-if="ctrl.entry.completed">
     <p>Thank you for entering our competition!</p>
   </div>
+
+  <p>
+    <%= link_to 'Back', campaigns_path %>
+  </p>
+
+
 </div>

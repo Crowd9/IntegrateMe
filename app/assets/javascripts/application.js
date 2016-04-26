@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require angular
-//= require_tree .
+//= require controllers/entrant
+//= require controllers/campaigns

@@ -2,7 +2,8 @@ class EntriesController < ApplicationController
 
   # POST /entries.json
   def create
-    @entry = Entry.new(entry_params)
+    campaign = Campaign.find params[:campaign_id]
+    @entry = Entry.new(entry_params.merge({api_key: campaign.api_key}))
 
     if @entry.save
       render json: {success: true}

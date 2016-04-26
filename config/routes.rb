@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  resources :campaigns
+  devise_for :users
   resources :entries
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
+  root 'campaigns#index'
+  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}, as: :enterant
   post 'entries' => 'entries#create'
 
   # Example of regular route:

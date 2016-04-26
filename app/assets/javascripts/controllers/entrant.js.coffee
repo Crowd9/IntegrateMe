@@ -3,7 +3,7 @@ angular.module('integrate', []).controller('EntrantController', ($scope, $http) 
 
   @init = (data) ->
     self.competition = data.competition
-    self.entry = {competition_id: data.competition.id}
+    self.entry = {campaign_id: data.campaign_id, competition_id: data.competition.id}
 
   @submit = ->
     $http.post("/entries", self.entry).
