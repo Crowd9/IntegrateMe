@@ -1,0 +1,44 @@
+//= require js-routes
+//= require ng.app/settings
+
+//= require ng.app/utils/_module.js
+//= require ng.app/utils/util.js
+//= require ng.app/utils/pagination_directive.js
+
+//= require ng.app/settings/_module.js
+//= require ng.app/settings/settings_crl.js
+//= require ng.app/settings/setting_form_ctrl.js
+//= require ng.app/settings/setting.js
+
+//= require ng.app/home/_module.js
+//= require ng.app/home/home_default_ctrl.js
+//= require ng.app/home/entrace_page_ctrl.js
+//= require ng.app/home/entry.js
+//= require ng.app/home/competition.js
+
+//= require ng.app/app.js
+//= require ng.app/app_ctrl.js
+
+
+<%
+  Dir.glob(Rails.root.to_s + "/app/assets/javascripts/ng.app/*").each do |path|
+    if File.directory?(path)
+      dirname = File.basename(path)
+      %>
+//= require ng.app/<%= dirname %>/_module.js
+      <%
+      Dir.glob(path + "/*").each do |file|
+        unless File.directory?(file)
+          filename = File.basename(file)
+          filename = filename.gsub(/\.coffee$/, "")
+          filename = "#{filename}.js" unless filename =~ /\.js$/
+          unless filename == "_module.js"
+          %>
+//= require ng.app/<%= dirname + "/" + filename %>
+          <%
+          end
+        end
+      end
+    end
+  end
+%>

@@ -1,0 +1,23 @@
+window.App = window.App || {};
+window.App.settingCodes = <%= Setting::CODES.to_json.html_safe %>;
+window.App.mailchimpUrlPrefix = "<%= APP_CONFIG[:app][:mailchimp_url_prefix] %>";
+
+<%# Copied and modify from https://gist.github.com/stevenharman/8493700 %>
+angular.module('demo.templates', []).run([ '$templateCache', function($templateCache) {
+  <%
+    environment.context_class.instance_eval { include ActionView::Helpers::JavaScriptHelper }
+    app_root  = File.expand_path('../', __FILE__)
+    templates = File.join(app_root, %w{** *})
+
+    Dir.glob(templates).each do |f|
+      if !File.directory?(f) && f.end_with?(".html")
+        depend_on(f)
+        key = f.gsub(%r(^#{app_root}/),'')
+        content = Tilt.new(f).render
+        %>
+        $templateCache.put("<%= key %>", "<%= escape_javascript(content) %>" );
+        <%
+      end
+    end
+  %>
+}]);

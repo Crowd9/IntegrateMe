@@ -1,14 +1,22 @@
-<h1>Competition App</h1>
+<!doctype html>
+<html ng-app="demo" ng-controller="AppCtrl">
+  <head>
+    <meta charset="utf-8">
+    <title>Demo app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Crest Retirement" />
+    <meta name="keywords" content="crest, retirement, crest retirement" />
+    <meta name="author" content="">
 
-<h2>Enter competitions below</h2>
-
-<% if @competitions.any? %>
-  <ul>
-    <% @competitions.each do |competition| %>
-      <li><%= link_to competition.name, competition_entrant_page(competition) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Seed your data!</p>
-<% end %>
-
+    <base href="/">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag :application %>
+    <%= javascript_include_tag :application %>
+  </head>
+  <body ng-class="$root.pageSpecificClasses" ng-cloak>
+    <div ng-view>
+    </div>
+    <!-- scripts here -->
+    <%= javascript_include_tag :main %>
+  </body>
+</html>

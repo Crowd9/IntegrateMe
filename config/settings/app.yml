@@ -1,0 +1,15 @@
+common_attr: &common_attr
+  mailchimp:
+    url_prefix: https://us12.api.mailchimp.com/3.0
+
+development:
+  <<: *common_attr
+
+test:
+  <<: *common_attr
+
+staging:
+  <<: *common_attr
+
+production:
+  <<: *common_attr

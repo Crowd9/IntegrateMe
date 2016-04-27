@@ -5,8 +5,18 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
-  post 'entries' => 'entries#create'
+  #get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
+  #post 'entries' => 'entries#create'
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :settings, :only => [:index, :create]
+      resources :entries, :only => [:create]
+      resources :competitions, :only => [:index, :show]
+    end
+  end
+
+  match '*all', :to => "welcome#index", :via => [:get]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
