@@ -18,11 +18,11 @@ class Entry < ActiveRecord::Base
   # after_destroy :unsubscribe_user
 
   def first_name
-    name.split.first
+    name.split.first if name.present?
   end
 
   def last_name
-    name.split.last
+    name.split.last if name.present?
   end
 
   private
