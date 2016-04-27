@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125020403) do
+ActiveRecord::Schema.define(version: 20160421182917) do
 
   create_table "competitions", force: :cascade do |t|
     t.string   "name"
     t.boolean  "requires_entry_name", default: true
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "entries", force: :cascade do |t|
@@ -29,5 +36,15 @@ ActiveRecord::Schema.define(version: 20160125020403) do
   end
 
   add_index "entries", ["competition_id", "email"], name: "index_entries_on_competition_id_and_email", unique: true
+
+  create_table "integrations", force: :cascade do |t|
+    t.string   "api_key"
+    t.string   "api_token"
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "list"
+  end
 
 end

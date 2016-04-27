@@ -1,0 +1,20 @@
+integrateMe = angular.module('integrateMe',[
+  'templates',
+  'ngRoute',
+  'ngResource',
+  'integrationControllers',
+  'integrationServices'
+])
+
+integrateMe.config([ '$routeProvider',
+  ($routeProvider)->
+    $routeProvider
+      .when('/integrations',
+        templateUrl: '<%= asset_path('angular/views/integrations/index.html') %>'
+        controller: 'IntegrationListCtrl'
+      ).
+      when('/integrations/:id/edit', {
+        templateUrl: '<%= asset_path('angular/views/integrations/edit.html') %>',
+        controller: 'IntegrationEditCtrl'
+      })
+])

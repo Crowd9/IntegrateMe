@@ -1,0 +1,19 @@
+= form_for @contact, html: { class: "form form-horizontal contact" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    .col-lg-10.input-group
+      = f.text_field :name, class: 'form-control', required: true
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-user
+    = f.error_span(:name)
+  .form-group
+    = f.label :email, class: 'control-label col-lg-2'
+    .col-lg-10.input-group
+      = f.email_field :email, class: 'form-control', required: true
+      %span.input-group-addon @
+    = f.error_span(:email)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil,class: 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")),
+        contacts_path, class: 'btn btn-default'

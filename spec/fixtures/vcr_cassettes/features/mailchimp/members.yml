@@ -1,0 +1,86 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://us12.api.mailchimp.com/2.0/lists/members.json
+    body:
+      encoding: UTF-8
+      string: '{"id":"1e37700ab9","status":"subscribed","opts":[],"apikey":"717008e14da769db801baac65aaa24c6-us12"}'
+    headers:
+      User-Agent:
+      - excon/0.49.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 15 Apr 2016 18:37:42 GMT
+      Content-Length:
+      - '9847'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"total":16,"data":[{"email":"sophie_ondricka@haagswift.co","id":"41cc4ec569","euid":"41cc4ec569","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        17:24:42","member_rating":2,"info_changed":"2016-04-15 17:24:43","web_id":75178689,"leid":75178689,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"sophie_ondricka@haagswift.co","FNAME":"Edwin","LNAME":"Ward","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        17:24:42","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"alejandrin_waelchi@kiehn.com","id":"20458c005a","euid":"20458c005a","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        17:25:48","member_rating":2,"info_changed":"2016-04-15 17:25:49","web_id":75178717,"leid":75178717,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"alejandrin_waelchi@kiehn.com","FNAME":"Vickie","LNAME":"Nolan","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        17:25:48","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"jedidiah.nolan@carter.name","id":"5df383f081","euid":"5df383f081","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        17:26:06","member_rating":2,"info_changed":"2016-04-15 17:26:06","web_id":75178729,"leid":75178729,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"jedidiah.nolan@carter.name","FNAME":"Dr.","LNAME":"Yvette","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        17:26:06","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"helena_hilll@thiel.org","id":"1cf8db84f3","euid":"1cf8db84f3","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        17:42:17","member_rating":2,"info_changed":"2016-04-15 17:42:18","web_id":75179005,"leid":75179005,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"helena_hilll@thiel.org","FNAME":"Antonio","LNAME":"Heller","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        17:42:17","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"polly.moriette@herzog.biz","id":"dab8bd8938","euid":"dab8bd8938","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        17:42:53","member_rating":2,"info_changed":"2016-04-15 17:42:54","web_id":75179009,"leid":75179009,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"polly.moriette@herzog.biz","FNAME":"Alvina","LNAME":"McKenzie","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        17:42:53","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"lewis@schmeler.info","id":"0adf06e345","euid":"0adf06e345","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        17:45:11","member_rating":2,"info_changed":"2016-04-15 17:45:11","web_id":75179029,"leid":75179029,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"lewis@schmeler.info","FNAME":"Angelo","LNAME":"Friesen","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        17:45:11","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"yesenia@kulashickle.net","id":"d3e4f3941a","euid":"d3e4f3941a","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:25:03","member_rating":2,"info_changed":"2016-04-15 18:25:06","web_id":75180705,"leid":75180705,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"yesenia@kulashickle.net","FNAME":"Mr.","LNAME":"Myrtle","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:25:03","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"horacio@denesik.biz","id":"13ac30f7b3","euid":"13ac30f7b3","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:25:56","member_rating":2,"info_changed":"2016-04-15 18:25:58","web_id":75180733,"leid":75180733,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"horacio@denesik.biz","FNAME":"Neva","LNAME":"Weimann","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:25:56","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"constance_oreilly@pfeffer.name","id":"29bce96c14","euid":"29bce96c14","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:26:38","member_rating":2,"info_changed":"2016-04-15 18:26:40","web_id":75180741,"leid":75180741,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"constance_oreilly@pfeffer.name","FNAME":"Lorena","LNAME":"Metz","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:26:38","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"chasity@loweshields.net","id":"237321b953","euid":"237321b953","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:27:21","member_rating":2,"info_changed":"2016-04-15 18:27:24","web_id":75180753,"leid":75180753,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"chasity@loweshields.net","FNAME":"Liliane","LNAME":"Hane","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:27:21","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"viva.heller@grady.biz","id":"bb64eea17b","euid":"bb64eea17b","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:29:54","member_rating":2,"info_changed":"2016-04-15 18:29:56","web_id":75180761,"leid":75180761,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"viva.heller@grady.biz","FNAME":"German","LNAME":"Flatley","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:29:54","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"immanuel.bayer@kub.net","id":"6af9645524","euid":"6af9645524","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:30:36","member_rating":2,"info_changed":"2016-04-15 18:30:38","web_id":75180789,"leid":75180789,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"immanuel.bayer@kub.net","FNAME":"Mrs.","LNAME":"Deondre","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:30:36","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"icie_cummerata@sauer.io","id":"c753805409","euid":"c753805409","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:31:55","member_rating":2,"info_changed":"2016-04-15 18:31:57","web_id":75180805,"leid":75180805,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"icie_cummerata@sauer.io","FNAME":"Mason","LNAME":"Casper","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:31:55","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"marianna_vandervort@kozeymarks.com","id":"b8c6780504","euid":"b8c6780504","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:32:16","member_rating":2,"info_changed":"2016-04-15 18:32:18","web_id":75180809,"leid":75180809,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"marianna_vandervort@kozeymarks.com","FNAME":"Dr.","LNAME":"Aiden","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:32:16","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"donato@ward.name","id":"8f43617176","euid":"8f43617176","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:35:23","member_rating":2,"info_changed":"2016-04-15 18:35:25","web_id":75180841,"leid":75180841,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"donato@ward.name","FNAME":"Mary","LNAME":"Schmidt","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:35:23","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]},{"email":"test_email_123@gmail.com","id":"2577e1a08e","euid":"2577e1a08e","email_type":"html","ip_signup":null,"timestamp_signup":null,"ip_opt":"94.25.231.97","timestamp_opt":"2016-04-15
+        18:37:39","member_rating":2,"info_changed":"2016-04-15 18:37:41","web_id":75180869,"leid":75180869,"language":null,"list_id":"1e37700ab9","list_name":"Test
+        list 2","merges":{"EMAIL":"test_email_123@gmail.com","FNAME":"Rodrigo","LNAME":"Armstrong","CITY":"","ADDRESS":"","PHONE":"","ZIP":""},"status":"subscribed","timestamp":"2016-04-15
+        18:37:39","is_gmonkey":false,"lists":[],"geo":[],"clients":[],"static_segments":[],"notes":[]}]}'
+    http_version: 
+  recorded_at: Fri, 15 Apr 2016 18:37:42 GMT
+recorded_with: VCR 3.0.1

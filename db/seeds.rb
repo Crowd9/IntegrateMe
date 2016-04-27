@@ -15,3 +15,5 @@
   c.attributes = data
   c.save!
 end
+
+Mailchimp.create(name: 'Mailchimp', api_key: '717008e14da769db801baac65aaa24c6-us12')

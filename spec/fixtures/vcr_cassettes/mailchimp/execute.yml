@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://us12.api.mailchimp.com/2.0/lists/list.json
+    body:
+      encoding: UTF-8
+      string: '{"filters":[],"start":0,"limit":25,"sort_field":"created","sort_dir":"DESC","apikey":"717008e14da769db801baac65aaa24c6-us12"}'
+    headers:
+      User-Agent:
+      - excon/0.49.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1822'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 15 Apr 2016 17:45:11 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"total":2,"data":[{"id":"1e37700ab9","web_id":16525,"name":"Test list
+        2","date_created":"2015-11-05 14:16:48","email_type_option":false,"use_awesomebar":true,"default_from_name":"Sergey","default_from_email":"sergey@clickfunnels.com","default_subject":"","default_language":"en","list_rating":0,"subscribe_url_short":"http:\/\/eepurl.com\/bE5rRn","subscribe_url_long":"http:\/\/Clickfunnels.us12.list-manage.com\/subscribe?u=08fe81f5b0d8c890e7eb6f127&id=1e37700ab9","beamer_address":"us12-6c387ced34-1b43d1c740@inbound.mailchimp.com","visibility":"pub","stats":{"member_count":3,"unsubscribe_count":0,"cleaned_count":0,"member_count_since_send":54,"unsubscribe_count_since_send":0,"cleaned_count_since_send":0,"campaign_count":0,"grouping_count":0,"group_count":0,"merge_var_count":6,"avg_sub_rate":0,"avg_unsub_rate":0,"target_sub_rate":0,"open_rate":0,"click_rate":0,"date_last_campaign":null},"modules":[]},{"id":"641bd4d4dc","web_id":14245,"name":"Clickfunnels
+        Test","date_created":"2015-11-03 14:44:19","email_type_option":false,"use_awesomebar":true,"default_from_name":"Sergey","default_from_email":"sergey@clickfunnels.com","default_subject":"","default_language":"en","list_rating":0,"subscribe_url_short":"http:\/\/eepurl.com\/bEMBqL","subscribe_url_long":"http:\/\/Clickfunnels.us12.list-manage.com\/subscribe?u=08fe81f5b0d8c890e7eb6f127&id=641bd4d4dc","beamer_address":"us12-6c387ced34-15348fd3a7@inbound.mailchimp.com","visibility":"pub","stats":{"member_count":0,"unsubscribe_count":0,"cleaned_count":2,"member_count_since_send":15,"unsubscribe_count_since_send":0,"cleaned_count_since_send":2,"campaign_count":1,"grouping_count":0,"group_count":0,"merge_var_count":8,"avg_sub_rate":0,"avg_unsub_rate":0,"target_sub_rate":0,"open_rate":0,"click_rate":0,"date_last_campaign":null},"modules":[]}],"errors":[]}'
+    http_version: 
+  recorded_at: Fri, 15 Apr 2016 17:45:11 GMT
+- request:
+    method: post
+    uri: https://us12.api.mailchimp.com/2.0/lists/subscribe.json
+    body:
+      encoding: UTF-8
+      string: '{"id":"1e37700ab9","email":{"email":"lewis@schmeler.info"},"merge_vars":{"FNAME":"Angelo","LNAME":"Friesen","optin_time":"2016-04-15
+        17:45:11 UTC"},"email_type":"html","double_optin":false,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"717008e14da769db801baac65aaa24c6-us12"}'
+    headers:
+      User-Agent:
+      - excon/0.49.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '69'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 15 Apr 2016 17:45:12 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"email":"lewis@schmeler.info","euid":"0adf06e345","leid":"75179029"}'
+    http_version: 
+  recorded_at: Fri, 15 Apr 2016 17:45:12 GMT
+recorded_with: VCR 3.0.1

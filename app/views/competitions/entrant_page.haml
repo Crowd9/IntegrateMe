@@ -1,0 +1,20 @@
+%div{"ng-controller" => "EntrantController as ctrl", "ng-init" => "ctrl.init(#{entrant_init(@entry)})"}
+  %h1 {{ctrl.competition.name}}
+  %div{"ng-if" => "!ctrl.entry.completed"}
+    %p Enter your details to win!
+    %form{:name => "entry"}
+      #error_explanation{"ng-if" => "ctrl.errors"}
+        Sorry, ther was a problem saving your entry:
+        %ul
+          %li{"ng-repeat" => "(field, errors) in ctrl.errors"}
+            {{field}}:
+            %span{"ng-repeat" => "error in errors"} {{error}}
+      %p{"ng-if" => "ctrl.competition.requires_entry_name"}
+        %label{:for => "name"} Name
+        %input#name{:name => "name", "ng-model" => "ctrl.entry.name"}/
+      %p
+        %label{:for => "email"} Email
+        %input#email{:name => "email", "ng-model" => "ctrl.entry.email"}/
+      %input{"ng-click" => "ctrl.submit()", :type => "submit", :value => "Enter!"}/
+  %div{"ng-if" => "ctrl.entry.completed"}
+    %p Thank you for entering our competition!

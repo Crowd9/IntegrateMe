@@ -1,0 +1,8 @@
+%h1 Competition App
+%h2 Enter competitions below
+- if @competitions.any?
+  %ul
+    - @competitions.each do |competition|
+      %li= link_to competition.name, competition_entrant_page(competition)
+- else
+  %p Seed your data!

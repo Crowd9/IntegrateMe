@@ -1,0 +1,42 @@
+%form.form.form-horizontal.integration{ action: '{{trustSrc(integration.id)}}', method: :post, 'accept-charset' => 'UTF-8' }
+
+  %input{ name: 'utf8', type: 'hidden', value: "✓" }
+  %input{ name: '_method', type: 'hidden', value: 'patch' }
+  %input{ name: 'integration[id]', type: 'hidden', value: '{{integration.id}}', 'ng-model' => 'integration.id' }
+
+  .form-group
+    %label.control-label.col-lg-2{ for: 'integration_api_key' } Api key
+    .col-lg-10.input-group
+      %input.form-control#integration_api_key{ required: 'required', 'ng-model' => 'integration.api_key', type: 'text', value: '{{integration.api_key}}', name: 'integration[api_key]' }
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-pencil
+
+  .form-group
+    %label.control-label.col-lg-2{ for: 'integration_api_token' } Api token
+    .col-lg-10.input-group
+      %input.form-control#integration_api_token{ required: 'required', 'ng-model' => 'integration.api_token', type: 'text', value: '{{integration.api_token}}', name: 'integration[api_token]' }
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-pencil
+
+  .form-group
+    %label.control-label.col-lg-2{ for: 'integration_name' } Name
+    .col-lg-10.input-group
+      %input.form-control#integration_name{ required: 'required', 'ng-model' => 'integration.name', type: 'text', value: '{{integration.name}}', name: 'integration[name]' }
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-pencil
+
+  .form-group
+    %label.control-label.col-lg-2{ for: 'integration_list' } List
+    .col-lg-10.input-group
+      %select.form-control{ required: 'required', 'ng-model' => 'integration.list', name: 'integration[list]' }
+        %option{ selected: "{{{true: 'selected', false: ''}[list[0] == integration.list]}}", 'ng-repeat' => "list in integration.lists", value: "{{list[0]}}" } {{list[2]}}
+
+  .form-group
+    %label.control-label.col-lg-2{ for: 'integration_type' } Type
+    .col-lg-10.input-group
+      %select.form-control{ required: 'required', 'ng-model' => 'integration.type', name: 'integration[type]' }
+        %option{ selected: "{{{true: 'selected', false: ''}[int.type == integration.type]}}", 'ng-repeat' => "int in integrations", value: "{{int.type}}" } {{int.type}}
+
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      %input.btn.btn-primary{ type: 'submit', name: 'commit', value: 'Update {{integration.name}}' }

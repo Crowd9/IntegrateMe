@@ -1,0 +1,28 @@
+- model_class = Integration
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:api_key)
+      %th= model_class.human_attribute_name(:api_token)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:list)
+      %th= model_class.human_attribute_name(:type)
+      %th= model_class.human_attribute_name(:created_at)
+      %th= I18n.t '.actions', :default => I18n.t("helpers.actions")
+  %tbody
+    %tr{ 'ng-repeat' => 'integration in integrations' }
+      %td
+        %a{ href: "#/integrations/{{integration.id}}" } {{integration.id}}
+      %td {{integration.api_key}}
+      %td {{integration.api_token}}
+      %td {{integration.name}}
+      %td {{integration.list}}
+      %td {{integration.type}}
+      %td {{integration.created_at|date:"MM/dd/yyyy @ h:mma"}}
+      %td
+        %a.btn.btn-default.btn-xs{ href: '#/integrations/{{integration.id}}/edit' }= I18n.t('.edit', default: I18n.t('helpers.links.edit'))
+        %a.btn.btn-danger.btn-xs{ href: '/integrations/{{integration.id}}', method: :delete, data: { :confirm => I18n.t('.confirm', default: I18n.t("helpers.links.confirm", default: 'Are you sure?')) } }= I18n.t('.destroy', default: I18n.t('helpers.links.destroy'))
+
+%a.btn.btn-primary{ href: '/integrations/new' }= I18n.t('.new', default: I18n.t('helpers.links.new'))

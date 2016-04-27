@@ -1,0 +1,41 @@
+= form_for @integration, url: @integration.new_record? ? integrations_path : integration_path(@integration),
+  as: :integration, html: { class: "form form-horizontal integration" } do |f|
+  = f.hidden_field :id, 'ng-model' => :id
+  .form-group
+    = f.label :api_key, class: 'control-label col-lg-2'
+    .col-lg-10.input-group
+      = f.text_field :api_key, class: 'form-control',
+        required: @integration.try(:required?, :api_key),
+        'ng-model' => 'api_key'
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-pencil
+    = f.error_span(:api_key)
+  .form-group
+    = f.label :api_token, class: 'control-label col-lg-2'
+    .col-lg-10.input-group
+      = f.text_field :api_token, class: 'form-control',
+        required: @integration.try(:required?, :api_token),
+        'ng-model' => 'api_token'
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-pencil
+    = f.error_span(:api_token)
+  .form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    .col-lg-10.input-group
+      = f.text_field :name, class: 'form-control', required: true,
+        'ng-model' => 'name'
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-pencil
+    = f.error_span(:name)
+  .form-group
+    = f.label :type, class: 'control-label col-lg-2'
+    .col-lg-10.input-group
+      = f.select :type, Integration::TYPES, { prompt: 'Select Integration' },
+        required: true, class: 'form-control',
+        'ng-model' => 'type'
+    = f.error_span(:type)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to t('.cancel', default: t("helpers.links.cancel")),
+        integrations_path, class: 'btn btn-default'
