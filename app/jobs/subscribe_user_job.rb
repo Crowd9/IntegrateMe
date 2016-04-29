@@ -14,9 +14,15 @@ class SubscribeUserJob < ActiveJob::Base
       gibbon.lists( ENV['MAILCHIMP_LIST_ID'] ).members.create( body: body )
     rescue Gibbon::MailChimpError => e
       logger.info "#{e.message} - #{e.raw_body}"
-      puts "sleeping ... retrying ..."
-      sleep 5
-      retry  # restart from beginning
+      if e.title =~ /Member Exists/
+        puts "member exist: #{entry.inspect} === removing"
+        entry.delete
+      else
+        puts 'sleeping ... retrying ...'
+        sleep 5
+        retry
+      end
+
     end
 
   end
