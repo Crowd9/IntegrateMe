@@ -3,8 +3,6 @@ class Entry < ActiveRecord::Base
 
   belongs_to :competition
 
-  attr_accessor :api_key
-
   before_validation :clean_email
 
   validates_presence_of   :competition, inverse_of: :entries
@@ -35,6 +33,6 @@ class Entry < ActiveRecord::Base
     end
 
     def subscribe_user
-      SubscribeUserJob.perform_later(self, @api_key)
+      SubscribeUserJob.perform_later(self)
     end
 end

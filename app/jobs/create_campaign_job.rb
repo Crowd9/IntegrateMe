@@ -20,8 +20,7 @@ class CreateCampaignJob < ActiveJob::Base
         settings: settings
     }
 
-    # what if the key is wrong
-    gibbon = Gibbon::Request.new(api_key: campaign.api_key)
+    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
 
     begin
       gibbon.campaigns.create(body: body)

@@ -1,9 +1,9 @@
 class SubscribeUserJob < ActiveJob::Base
   queue_as :default
 
-  def perform(entry, api_key)
+  def perform(entry)
 
-    gibbon = Gibbon::Request.new(api_key: api_key)
+    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
 
     body = {}
     body[:email_address] = entry.email

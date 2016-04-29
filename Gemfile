@@ -48,6 +48,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.3.3'
   gem 'shoulda'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -58,3 +59,9 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner', '~> 1.5'
+  gem 'faker', '~> 1.6.1'
+  gem 'shoulda-matchers'
+end
