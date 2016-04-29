@@ -7,6 +7,7 @@ RSpec.describe Entry, type: :model do
 
 
   describe 'email' do
+
     subject { entry }
 
     it { should validate_presence_of :email }
@@ -21,6 +22,7 @@ RSpec.describe Entry, type: :model do
         expect(entry).not_to be_valid
       end
     end
+
   end
 
   describe 'name' do
@@ -52,8 +54,6 @@ RSpec.describe Entry, type: :model do
       FactoryGirl.create(:entry)
       Delayed::Worker.new.work_off
       after_create_count = gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members.retrieve['total_items']
-      puts "=== before_create_count #{before_create_count}"
-      puts "=== after_create_count: #{after_create_count}"
       expect(after_create_count).to eq(before_create_count+1)
     end
 
