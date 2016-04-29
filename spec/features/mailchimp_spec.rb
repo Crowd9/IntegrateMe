@@ -35,7 +35,7 @@ RSpec.feature 'Mailchimp', type: :feature do
     subject{ entry }
 
     scenario 'contact' do
-      visit enterant_path(1, permalink: 'nameemail-comp')
+      visit enterant_path(competition, permalink: 'nameemail-comp')
       expect(page).to have_text 'Enter your details to win!'
       fill_in 'name', with: entry.name
       fill_in 'email', with: entry.email
