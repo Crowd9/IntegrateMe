@@ -2,6 +2,7 @@ class Campaign < ActiveRecord::Base
   EMAIL_REGEX = /\A[A-Z0-9._%a-z\-+]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,12}\z/
 
   belongs_to :user, inverse_of: :campaigns
+  has_many :entries
 
   before_validation :clean_reply_to
 

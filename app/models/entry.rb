@@ -2,6 +2,7 @@ class Entry < ActiveRecord::Base
   EMAIL_REGEX = /\A[A-Z0-9._%a-z\-+]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,12}\z/
 
   belongs_to :competition
+  belongs_to :campaign
 
   before_validation :clean_email
 
@@ -12,7 +13,7 @@ class Entry < ActiveRecord::Base
   validates_uniqueness_of :email, scope: :competition, message: "has already entered this competition"
 
   after_create  :subscribe_user
-  # after_update  :edit_subscribed_user
+  after_update  :edit_subscribed_user
   # after_destroy :unsubscribe_user
 
   def first_name
@@ -34,5 +35,9 @@ class Entry < ActiveRecord::Base
 
     def subscribe_user
       SubscribeUserJob.perform_later(self)
+    end
+
+    def edit_subscribed_user
+      SubscribeUserJob.perform_later(self, 'edit')
     end
 end

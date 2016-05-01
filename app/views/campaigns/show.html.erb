@@ -20,8 +20,18 @@
   <%= @campaign.reply_to %>
 </p>
 
+<ul>
+  <strong>List of entries</strong>
+  <% @campaign.entries.each do |entry| %>
+    <li>
+      <%= entry.email %>
+      <%= link_to 'Edit', edit_campaign_entry_path(@campaign, entry) %>
+    </li>
 
-<%= link_to 'Join Name Email Competition', enterant_path(1, permalink: 'nameemail-comp') %> |
-<%= link_to 'Join Email Competition', enterant_path(2, permalink: 'email-comp') %> |
+  <% end %>
+</ul>
+
+<%= link_to 'Join Name Email Competition', enterant_path(1, permalink: 'nameemail-comp', campaign_id: @campaign) %>
+<%= link_to 'Join Email Competition', enterant_path(2, permalink: 'email-comp', campaign_id: @campaign) %> |
 
 <%= link_to 'Back', campaigns_path %>

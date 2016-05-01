@@ -1,4 +1,4 @@
-<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry, params[:campaign_id]) %>)">
+<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry, @campaign) %>)">
   <h1>{{ctrl.competition.name}}</h1>
 
   <div ng-if="!ctrl.entry.completed">
@@ -25,7 +25,11 @@
           <input id="email" name="email" ng-model="ctrl.entry.email">
       </p>
 
-      <input type="submit" ng-click="ctrl.submit()" value="Enter!">
+      <% if @entry.new_record? %>
+        <input type="submit" ng-click="ctrl.submit()" value="Enter!">
+      <% else %>
+        <input type="submit" ng-click="ctrl.update()" value="Update!">
+      <% end %>
     </form>
   </div>
   <div ng-if="ctrl.entry.completed">

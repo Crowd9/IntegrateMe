@@ -36,13 +36,11 @@ class CampaignsController < ApplicationController
   # PATCH/PUT /campaigns/1
   # PATCH/PUT /campaigns/1.json
   def update
-    # respond_to do |format|
     if @campaign.update(campaign_params)
       render json: {success: true}
     else
       render json: { errors: @campaign.errors, success: false }
     end
-    # end
   end
 
   # DELETE /campaigns/1

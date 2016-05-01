@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :campaigns
+  resources :campaigns do
+    resources :entries, only: [:edit, :update, :create, :new]
+  end
   devise_for :users
   resources :entries
   # The priority is based upon order of creation: first created -> highest priority.
