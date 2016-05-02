@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426185929) do
+ActiveRecord::Schema.define(version: 20160501191553) do
 
   create_table "campaigns", force: :cascade do |t|
     t.integer  "list_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160426185929) do
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "mailchimp_id"
   end
 
   create_table "competitions", force: :cascade do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160426185929) do
     t.text     "email"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "campaign_id"
   end
 
   add_index "entries", ["competition_id", "email"], name: "index_entries_on_competition_id_and_email", unique: true

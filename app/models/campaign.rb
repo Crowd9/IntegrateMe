@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
   # validates_presence_of :api_key
 
   after_create    :create_campaign
-  # after_update  :update_campaign
+  after_update    :update_campaign
   # after_destroy :destroy_campaign
 
   private
@@ -22,7 +22,11 @@ class Campaign < ActiveRecord::Base
     end
 
     def create_campaign
-      CreateCampaignJob.perform_later(self)
+      CreateCampaignJob.perform_later(self.id)
+    end
+
+    def update_campaign
+      CreateCampaignJob.perform_later(self.id, 'update')
     end
 
 end

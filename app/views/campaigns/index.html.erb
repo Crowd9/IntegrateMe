@@ -20,9 +20,10 @@
         <td><%= campaign.title %></td>
         <td><%= campaign.from_name %></td>
         <td><%= campaign.reply_to %></td>
-        <td><%= link_to 'Show', campaign %></td>
-        <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-        <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Show', campaign %> |
+          <%= link_to 'Edit', edit_campaign_path(campaign) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
