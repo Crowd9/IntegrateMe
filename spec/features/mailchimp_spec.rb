@@ -22,7 +22,7 @@ RSpec.feature 'Mailchimp', type: :feature do
       fill_in 'subject_line', with: campaign.subject_line
       fill_in 'from_name', with: campaign.from_name
       fill_in 'reply_to', with: campaign.reply_to
-      page.click_button 'Create Campaign'
+      page.click_button 'Save Campaign'
 
       expect(page).to have_text 'Campaign was successfully created.'
     end
