@@ -34,10 +34,10 @@ class Entry < ActiveRecord::Base
     end
 
     def subscribe_user
-      SubscribeUserJob.perform_later(self)
+      SubscribeUserJob.perform_later(self.id)
     end
 
     def edit_subscribed_user
-      SubscribeUserJob.perform_later(self, 'edit')
+      SubscribeUserJob.perform_later(self.id, 'edit')
     end
 end
