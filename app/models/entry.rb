@@ -14,9 +14,9 @@ class Entry < ActiveRecord::Base
   private
     def clean_email
       self.email = email.downcase.strip if email.present?
-    end
+end
 
-    def requires_name
-      competition.requires_entry_name?
-    end
+def requires_name
+  competition.requires_entry_name?
+end
 end
