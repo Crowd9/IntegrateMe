@@ -4,7 +4,8 @@
   <div ng-if="!ctrl.campaign.completed">
     <p>Enter your details to win!</p>
 
-    <form name="campaign">
+
+    <form class="col-md-6 col-md-offset-2" name="campaign">
       <div id="error_explanation" ng-if="ctrl.errors">
         Sorry, ther was a problem saving your campaign:
         <ul>
@@ -15,27 +16,32 @@
         </ul>
       </div>
 
-      <p>
+      <p class="form-group">
+        <label for="api_key">API Key</label>
+        <input id="api_key" name="api_key" class="form-control" ng-model="ctrl.campaign.api_key">
+      </p>
+
+      <p class="form-group">
         <label for="title">Title</label>
-        <input id="title" name="title" ng-model="ctrl.campaign.title">
+        <input id="title" name="title" class="form-control" ng-model="ctrl.campaign.title">
       </p>
 
-      <p>
+      <p class="form-group">
         <label for="subject_line">Subject Line</label>
-        <input id="subject_line" name="subject_line" ng-model="ctrl.campaign.subject_line">
+        <input id="subject_line" name="subject_line" class="form-control" ng-model="ctrl.campaign.subject_line">
       </p>
 
-      <p>
+      <p class="form-group">
         <label for="from_name">From Name</label>
-        <input id="from_name" name="from_name" ng-model="ctrl.campaign.from_name">
+        <input id="from_name" name="from_name" class="form-control" ng-model="ctrl.campaign.from_name">
       </p>
 
-      <p>
+      <p class="form-group">
         <label for="reply_to">Reply To</label>
-        <input id="reply_to" name="reply_to" ng-model="ctrl.campaign.reply_to">
+        <input id="reply_to" name="reply_to" class="form-control" ng-model="ctrl.campaign.reply_to">
       </p>
 
-      <input type="submit" ng-click="ctrl.action()" value="Save Campaign">
+      <input type="submit" ng-click="ctrl.action()" class="btn btn-default" value="Save Campaign">
     </form>
   </div>
 

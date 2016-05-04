@@ -34,9 +34,16 @@ gem 'gibbon'
 # Authentication
 gem 'devise'
 
+# Bootstrap styling
+gem 'therubyracer', '~> 0.12.2'
+gem 'less-rails', '= 2.7.1'
+gem 'twitter-bootstrap-rails', '~> 3.2.2'
+
 # Background processing
 gem 'delayed_job_active_record'
 
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
