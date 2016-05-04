@@ -37,6 +37,10 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # Configure queue
+  config.active_job.queue_adapter = :test
+
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
