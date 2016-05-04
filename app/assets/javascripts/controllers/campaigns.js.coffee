@@ -1,8 +1,11 @@
-angular.module('integrate').controller('CampaignsController', ($scope, $http) ->
+angular.module('integrate').controller('CampaignsController', ($scope, $http, $window) ->
   self = @
 
   @init = (data) ->
     self.campaign = data.campaign
+
+  @back = ->
+    $window.location.href = '/campaigns'
 
   @action = ->
     if self.campaign.action == 'Create'

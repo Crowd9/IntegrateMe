@@ -2,13 +2,14 @@
 
 <h1>Listing Campaigns</h1>
 
-<table>
+<table class="table ">
   <thead>
     <tr>
-      <th>Subject Line</th>
-      <th>Title</th>
-      <th>From name</th>
-      <th>Reply to</th>
+      <!--<th>Subject Line</th>-->
+      <th >Title</th>
+      <th >API Key</th>
+      <!--<th>From name</th>-->
+      <!--<th>Reply to</th>-->
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +17,11 @@
   <tbody>
     <% @campaigns.each do |campaign| %>
       <tr>
-        <td><%= campaign.subject_line %></td>
+        <!--<td><%= campaign.subject_line %></td>-->
         <td><%= campaign.title %></td>
-        <td><%= campaign.from_name %></td>
-        <td><%= campaign.reply_to %></td>
+        <td><%= campaign.api_key %></td>
+        <!--<td><%= campaign.from_name %></td>-->
+        <!--<td><%= campaign.reply_to %></td>-->
         <td>
           <%= link_to 'Show', campaign %> |
           <%= link_to 'Edit', edit_campaign_path(campaign) %>

@@ -4,18 +4,18 @@ class Campaign < ActiveRecord::Base
   belongs_to :user, inverse_of: :campaigns
   has_many :entries
 
-  before_validation :clean_reply_to
+  # before_validation :clean_reply_to
 
-  validates_presence_of :subject_line
+  # validates_presence_of :subject_line
   validates_presence_of :title
-  validates_presence_of :from_name
-  validates_presence_of :reply_to
-  validates_format_of   :reply_to, :with => EMAIL_REGEX, allow_blank: true, allow_nil: true
+  # validates_presence_of :from_name
+  # validates_presence_of :reply_to
+  # validates_format_of   :reply_to, :with => EMAIL_REGEX, allow_blank: true, allow_nil: true
   validates_presence_of :api_key
 
-  after_create    :create_campaign
-  after_update    :update_campaign
-  # after_destroy :destroy_campaign
+  # after_create    :create_campaign
+  # after_update    :update_campaign
+  # after_destroy   :destroy_campaign
 
   private
     def clean_reply_to
@@ -23,11 +23,11 @@ class Campaign < ActiveRecord::Base
     end
 
     def create_campaign
-      CreateCampaignJob.perform_later(self.id)
+      CreateCampaignJob.perform_later(self.id) if ENV['CREATE_CAMPAIGN_MC'] == 'true'
     end
 
     def update_campaign
-      CreateCampaignJob.perform_later(self.id, 'update')
+      CreateCampaignJob.perform_later(self.id, 'update') if ENV['CREATE_CAMPAIGN_MC'] == 'true'
     end
 
 end

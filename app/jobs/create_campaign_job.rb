@@ -10,7 +10,7 @@ class CreateCampaignJob < ActiveJob::Base
     }
 
     settings = {
-        subject_line: campaign.subject_line,
+        subject_line: campaign.subject_line ,
         title: campaign.title,
         from_name: campaign.from_name,
         reply_to: campaign.reply_to

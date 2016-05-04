@@ -2,10 +2,11 @@
   <h1>{{ctrl.campaign.title}}</h1>
 
   <div ng-if="!ctrl.campaign.completed">
-    <p>Enter your details to win!</p>
+
 
 
     <form class="col-md-6 col-md-offset-2" name="campaign">
+
       <div id="error_explanation" ng-if="ctrl.errors">
         Sorry, ther was a problem saving your campaign:
         <ul>
@@ -26,22 +27,25 @@
         <input id="title" name="title" class="form-control" ng-model="ctrl.campaign.title">
       </p>
 
-      <p class="form-group">
-        <label for="subject_line">Subject Line</label>
-        <input id="subject_line" name="subject_line" class="form-control" ng-model="ctrl.campaign.subject_line">
-      </p>
 
-      <p class="form-group">
-        <label for="from_name">From Name</label>
-        <input id="from_name" name="from_name" class="form-control" ng-model="ctrl.campaign.from_name">
-      </p>
+      <!--<p class="form-group">-->
+        <!--<label for="subject_line">Subject Line</label>-->
+        <!--<input id="subject_line" name="subject_line" class="form-control" ng-model="ctrl.campaign.subject_line">-->
+      <!--</p>-->
 
-      <p class="form-group">
-        <label for="reply_to">Reply To</label>
-        <input id="reply_to" name="reply_to" class="form-control" ng-model="ctrl.campaign.reply_to">
-      </p>
+      <!--<p class="form-group">-->
+        <!--<label for="from_name">From Name</label>-->
+        <!--<input id="from_name" name="from_name" class="form-control" ng-model="ctrl.campaign.from_name">-->
+      <!--</p>-->
+
+      <!--<p class="form-group">-->
+        <!--<label for="reply_to">Reply To</label>-->
+        <!--<input id="reply_to" name="reply_to" class="form-control" ng-model="ctrl.campaign.reply_to">-->
+      <!--</p>-->
 
       <input type="submit" ng-click="ctrl.action()" class="btn btn-default" value="Save Campaign">
+      <input ng-click="ctrl.back()" class="btn btn-warning" value="Cancle">
+
     </form>
   </div>
 
