@@ -1,0 +1,66 @@
+<div ng-controller="CampaignsController as ctrl" ng-init="ctrl.init(<%= campaigns_init(@campaign) %>)"
+     xmlns="http://www.w3.org/1999/html">
+
+
+  <div ng-if="!ctrl.campaign.completed">
+
+    <form name="campaign">
+
+      <div id="error_explanation" ng-if="ctrl.errors">
+        Sorry, ther was a problem saving your campaign:
+        <ul>
+          <li ng-repeat="(field, errors) in ctrl.errors">
+            {{field}}:
+            <span ng-repeat="error in errors">{{error}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <h3>{{ctrl.campaign.title}}</h3>
+
+      <p class="form-group">
+        <label for="api_key">API Key</label>
+        <input id="api_key" name="api_key" class="form-control" ng-model="ctrl.campaign.api_key">
+      </p>
+
+      <p class="form-group">
+        <label for="title">Title</label>
+        <input id="title" name="title" class="form-control" ng-model="ctrl.campaign.title">
+      </p>
+
+      <p class="form-group">
+        <label for="list">Lists</label>
+        <select class="form-control" ng-model="ctrl.campaign.list_id">
+          <option ng-repeat="list in ctrl.campaign.lists" value="{{list['id']}}"> {{list['name']}} </option>
+
+        </select>
+      </p>
+
+
+      <!--<p class="form-group">-->
+        <!--<label for="subject_line">Subject Line</label>-->
+        <!--<input id="subject_line" name="subject_line" class="form-control" ng-model="ctrl.campaign.subject_line">-->
+      <!--</p>-->
+
+      <!--<p class="form-group">-->
+        <!--<label for="from_name">From Name</label>-->
+        <!--<input id="from_name" name="from_name" class="form-control" ng-model="ctrl.campaign.from_name">-->
+      <!--</p>-->
+
+      <!--<p class="form-group">-->
+        <!--<label for="reply_to">Reply To</label>-->
+        <!--<input id="reply_to" name="reply_to" class="form-control" ng-model="ctrl.campaign.reply_to">-->
+      <!--</p>-->
+
+      <button type="submit" ng-click="ctrl.action()" class="btn btn-success">Save Campaign</button>
+      <button ng-click="ctrl.back()" class="btn btn-warning">Cancle</button>
+
+    </form>
+  </div>
+
+  <div ng-if="ctrl.campaign.completed">
+    <p>Campaign was successfully created.</p>
+    <input ng-click="ctrl.back()" class="btn btn-warning" value="Back">
+  </div>
+
+</div>

@@ -11,4 +11,8 @@
 // about supported directives.
 //
 //= require angular
-//= require_tree .
+//= require jquery
+//= require jquery_ujs
+//= require controllers/entrant
+//= require controllers/campaigns
+//= require twitter/bootstrap

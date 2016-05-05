@@ -25,6 +25,25 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Using figaro for keeping keys
+gem 'figaro'
+
+# Using gibbon for mailchimp integration
+gem 'gibbon'
+
+# Authentication
+gem 'devise'
+
+# Bootstrap styling
+gem 'therubyracer', '~> 0.12.2'
+gem 'less-rails', '= 2.7.1'
+gem 'twitter-bootstrap-rails', '~> 3.2.2'
+
+# Background processing
+gem 'delayed_job_active_record'
+
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -35,6 +54,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.3.3'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -45,3 +66,9 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner', '~> 1.5'
+  gem 'faker', '~> 1.6.1'
+  gem 'shoulda-matchers'
+end

@@ -1,34 +1,43 @@
-<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry) %>)">
-  <h1>{{ctrl.competition.name}}</h1>
+<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry, @campaign) %>)">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>{{ctrl.competition.name}}</h1>
 
-  <div ng-if="!ctrl.entry.completed">
-    <p>Enter your details to win!</p>
+    <div ng-if="!ctrl.entry.completed">
+      <p>Enter your details to win!</p>
 
-    <form name="entry">
-      <div id="error_explanation" ng-if="ctrl.errors">
-        Sorry, ther was a problem saving your entry:
-        <ul>
-          <li ng-repeat="(field, errors) in ctrl.errors">
-            {{field}}:
-            <span ng-repeat="error in errors">{{error}}</span>
-          </li>
-        </ul>
-      </div>
 
-      <p ng-if="ctrl.competition.requires_entry_name">
-        <label for="name">Name</label>
-        <input id="name" name="name" ng-model="ctrl.entry.name">
-      </p>
+      <form name="entry">
+        <div id="error_explanation" ng-if="ctrl.errors">
+          Sorry, ther was a problem saving your entry:
+          <ul>
+            <li ng-repeat="(field, errors) in ctrl.errors">
+              {{field}}:
+              <span ng-repeat="error in errors">{{error}}</span>
+            </li>
+          </ul>
+        </div>
 
-      <p>
+        <div class="form-group" ng-if="ctrl.competition.requires_entry_name">
+          <label for="name">Name</label>
+          <input class="form-control" id="name" name="name" ng-model="ctrl.entry.name">
+        </div>
+
+        <div class="form-group">
           <label for="email">Email</label>
-          <input id="email" name="email" ng-model="ctrl.entry.email">
-      </p>
+          <input class="form-control" id="email" name="email" ng-model="ctrl.entry.email">
+        </div>
 
-      <input type="submit" ng-click="ctrl.submit()" value="Enter!">
-    </form>
-  </div>
-  <div ng-if="ctrl.entry.completed">
-    <p>Thank you for entering our competition!</p>
+        <% if @entry.new_record? %>
+          <input class="btn btn-success" type="submit" ng-click="ctrl.submit()" value="Enter!">
+        <% else %>
+          <input class="btn btn-success" type="submit" ng-click="ctrl.update()" value="Update!">
+        <% end %>
+        <button ng-click="ctrl.back()" class="btn btn-warning" > Cancle </button>
+      </form>
+    </div>
+    <div ng-if="ctrl.entry.completed">
+      <p>Thank you for entering our competition!</p>
+      <%= link_to 'Back', campaigns_path, {class: 'btn btn-warning'} %>
+    </div>
   </div>
 </div>
