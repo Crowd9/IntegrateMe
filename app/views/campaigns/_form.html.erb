@@ -1,9 +1,7 @@
 <div ng-controller="CampaignsController as ctrl" ng-init="ctrl.init(<%= campaigns_init(@campaign) %>)">
-  <h1>{{ctrl.campaign.title}}</h1>
+
 
   <div ng-if="!ctrl.campaign.completed">
-
-
 
     <form class="col-md-6 col-md-offset-2" name="campaign">
 
@@ -17,6 +15,8 @@
         </ul>
       </div>
 
+      <h3>{{ctrl.campaign.title}}</h3>
+
       <p class="form-group">
         <label for="api_key">API Key</label>
         <input id="api_key" name="api_key" class="form-control" ng-model="ctrl.campaign.api_key">
@@ -25,6 +25,14 @@
       <p class="form-group">
         <label for="title">Title</label>
         <input id="title" name="title" class="form-control" ng-model="ctrl.campaign.title">
+      </p>
+
+      <p class="form-group">
+        <label for="title">Lists</label>
+        <select class="form-control" ng-model="ctrl.campaign.list_id">
+          <option ng-repeat="list in ctrl.campaign.lists" value="{{list['id']}}"> {{list['name']}} </option>
+
+        </select>
       </p>
 
 

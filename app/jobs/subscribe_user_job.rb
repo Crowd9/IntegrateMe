@@ -4,8 +4,9 @@ class SubscribeUserJob < ActiveJob::Base
   def perform(entry_id, action='create')
 
     entry = Entry.find_by id: entry_id
+    api_key = entry.campaign.mailchimp_id
 
-    @gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+    @gibbon = Gibbon::Request.new(api_key: api_key)
 
     @body = {}
     @body[:email_address] = entry.email
@@ -22,13 +23,12 @@ class SubscribeUserJob < ActiveJob::Base
   end
 
   def create(entry)
-    puts "===create entry"
+    list_id = entry.campaign.list_id
     begin
-      @gibbon.lists( ENV['MAILCHIMP_LIST_ID'] ).members.create(body: @body)
+      @gibbon.lists(list_id).members.create(body: @body)
     rescue Gibbon::MailChimpError => e
       logger.info "#{e.message} - #{e.raw_body}"
       if e.title =~ /Member Exists/
-        puts "member exist: #{entry.inspect} === removing"
         entry.delete
       else
         puts 'sleeping ... retrying ...'
@@ -39,14 +39,15 @@ class SubscribeUserJob < ActiveJob::Base
   end
 
   def edit(entry)
-    puts "===edit entry"
+    list_id = entry.campaign.list_id
     md5_email = Digest::MD5.hexdigest entry.email
     begin
-      @gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members(md5_email).upsert(body: @body)
+      @gibbon.lists(list_id).members(md5_email).upsert(body: @body)
     rescue Gibbon::MailChimpError => e
       logger.info "#{e.message} - #{e.raw_body}"
       puts 'sleeping ... retrying ...'
       sleep 5
+      retry
     end
   end
 

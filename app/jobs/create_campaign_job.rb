@@ -6,7 +6,7 @@ class CreateCampaignJob < ActiveJob::Base
     campaign = Campaign.find_by id: campaign_id
 
     recipients = {
-        list_id: ENV['MAILCHIMP_LIST_ID']
+        list_id: campaign.list_id
     }
 
     settings = {
@@ -22,7 +22,7 @@ class CreateCampaignJob < ActiveJob::Base
         settings: settings
     }
 
-    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+    gibbon = Gibbon::Request.new(api_key: campaign.mailchimp_id)
 
     case action
       when 'create'
