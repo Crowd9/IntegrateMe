@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :campaigns do
-    resources :entries, only: [:edit, :update, :create, :new]
+    resources :entries, only: [:edit, :update]
   end
   devise_for :users
   resources :entries

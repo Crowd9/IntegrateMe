@@ -1,9 +1,10 @@
-<div ng-controller="CampaignsController as ctrl" ng-init="ctrl.init(<%= campaigns_init(@campaign) %>)">
+<div ng-controller="CampaignsController as ctrl" ng-init="ctrl.init(<%= campaigns_init(@campaign) %>)"
+     xmlns="http://www.w3.org/1999/html">
 
 
   <div ng-if="!ctrl.campaign.completed">
 
-    <form class="col-md-6 col-md-offset-2" name="campaign">
+    <form name="campaign">
 
       <div id="error_explanation" ng-if="ctrl.errors">
         Sorry, ther was a problem saving your campaign:
@@ -28,7 +29,7 @@
       </p>
 
       <p class="form-group">
-        <label for="title">Lists</label>
+        <label for="list">Lists</label>
         <select class="form-control" ng-model="ctrl.campaign.list_id">
           <option ng-repeat="list in ctrl.campaign.lists" value="{{list['id']}}"> {{list['name']}} </option>
 
@@ -51,14 +52,15 @@
         <!--<input id="reply_to" name="reply_to" class="form-control" ng-model="ctrl.campaign.reply_to">-->
       <!--</p>-->
 
-      <input type="submit" ng-click="ctrl.action()" class="btn btn-default" value="Save Campaign">
-      <input ng-click="ctrl.back()" class="btn btn-warning" value="Cancle">
+      <button type="submit" ng-click="ctrl.action()" class="btn btn-success">Save Campaign</button>
+      <button ng-click="ctrl.back()" class="btn btn-warning">Cancle</button>
 
     </form>
   </div>
 
   <div ng-if="ctrl.campaign.completed">
     <p>Campaign was successfully created.</p>
+    <input ng-click="ctrl.back()" class="btn btn-warning" value="Back">
   </div>
 
 </div>

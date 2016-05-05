@@ -4,6 +4,7 @@ RSpec.describe Entry, type: :model do
 
   let(:competition) { FactoryGirl.create(:competition) }
   let(:entry) { competition.entries.create! name: Faker::Name.name, email: Faker::Internet.email }
+  let(:campaign) { FactoryGirl.create(:campaign) }
 
 
   describe 'email' do
@@ -49,11 +50,12 @@ RSpec.describe Entry, type: :model do
     end
 
     it 'should create add user over mailchimp api' do
-      gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
-      before_create_count = gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members.retrieve['total_items']
+      campaign.entries << entry
+      gibbon = Gibbon::Request.new(api_key: campaign.api_key)
+      before_create_count = gibbon.lists(campaign.list_id).members.retrieve['total_items']
       FactoryGirl.create(:entry)
       Delayed::Worker.new.work_off
-      after_create_count = gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members.retrieve['total_items']
+      after_create_count = gibbon.lists(campaign.list_id).members.retrieve['total_items']
       expect(after_create_count).to eq(before_create_count+1)
     end
 

@@ -4,7 +4,7 @@ class SubscribeUserJob < ActiveJob::Base
   def perform(entry_id, action='create')
 
     entry = Entry.find_by id: entry_id
-    api_key = entry.campaign.mailchimp_id
+    api_key = entry.campaign.api_key
 
     @gibbon = Gibbon::Request.new(api_key: api_key)
 

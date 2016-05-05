@@ -1,37 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <!--<p>-->
-  <!--<strong>Subject line:</strong>-->
-  <!--<%= @campaign.subject_line %>-->
+<!--<strong>Subject line:</strong>-->
+<!--<%= @campaign.subject_line %>-->
 <!--</p>-->
 
-<p>
-  <strong>Title:</strong>
-  <%= @campaign.title %>
-</p>
+<div class="row">
 
+  <p class="col-md-6">
+    <strong>Title:</strong>
+    <%= @campaign.title %>
+  </p>
+
+  <p class="col-md-6">
+    <strong>API Key:</strong>
+    <%= @campaign.api_key %>
+  </p>
+
+</div>
 <!--<p>-->
-  <!--<strong>From name:</strong>-->
-  <!--<%= @campaign.from_name %>-->
+<!--<strong>Reply to:</strong>-->
+<!--<%= @campaign.reply_to %>-->
 <!--</p>-->
 
-<!--<p>-->
-  <!--<strong>Reply to:</strong>-->
-  <!--<%= @campaign.reply_to %>-->
-<!--</p>-->
-
-<ul>
+<ul class="list-group col-md-6">
   <strong>List of entries</strong>
   <% @campaign.entries.each do |entry| %>
-    <li>
+    <li class="list-group-item">
       <%= entry.email %>
-      <%= link_to 'Edit', edit_campaign_entry_path(@campaign, entry) %>
+      <%= link_to 'Edit', edit_campaign_entry_path(@campaign, entry), {class: 'pull-right'} %>
     </li>
 
   <% end %>
 </ul>
 
+<div class="clearfix"></div>
+<%= link_to 'Edit Campaign', edit_campaign_path(@campaign), class: 'btn btn-default' %>
+<div>
 <%= link_to 'Join Name Email Competition', enterant_path(1, permalink: 'nameemail-comp', campaign_id: @campaign) %> |
 <%= link_to 'Join Email Competition', enterant_path(2, permalink: 'email-comp', campaign_id: @campaign) %> |
-
 <%= link_to 'Back', campaigns_path %>
+</div>

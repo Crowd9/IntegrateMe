@@ -22,7 +22,7 @@ class CreateCampaignJob < ActiveJob::Base
         settings: settings
     }
 
-    gibbon = Gibbon::Request.new(api_key: campaign.mailchimp_id)
+    gibbon = Gibbon::Request.new(api_key: campaign.api_key)
 
     case action
       when 'create'

@@ -1,4 +1,4 @@
-angular.module('integrate', []).controller('EntrantController', ($scope, $http) ->
+angular.module('integrate', []).controller('EntrantController', ($scope, $http, $window) ->
   self = @
 
   @init = (data) ->
@@ -10,6 +10,9 @@ angular.module('integrate', []).controller('EntrantController', ($scope, $http) 
       email: data.competition.entry_email,
       id: data.entry_id
     }
+
+  @back = ->
+    $window.location.href = '/campaigns'
 
   @submit = ->
     $http.post("/entries", self.entry).
