@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+html, body {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.app-root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0.5rem;
+
+  @media(min-width: 550px) {
+    width: 30rem;
+  }
+}

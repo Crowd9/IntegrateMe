@@ -22,5 +22,7 @@ module IntegrateMe
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.x.mail_chimp = config_for(:mail_chimp)
   end
 end

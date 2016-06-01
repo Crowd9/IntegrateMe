@@ -5,10 +5,12 @@
 <% if @competitions.any? %>
   <ul>
     <% @competitions.each do |competition| %>
-      <li><%= link_to competition.name, competition_entrant_page(competition) %></li>
+      <li>
+        <span><%= link_to competition.name, competition_entrant_page(competition) %></span>
+        <span><%= link_to "(stats)", competition_path(competition) %></span>
+      </li>
     <% end %>
   </ul>
 <% else %>
   <p>Seed your data!</p>
 <% end %>
-

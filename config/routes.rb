@@ -5,8 +5,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
-  post 'entries' => 'entries#create'
+  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: { competition_id: /\d+/ }
+  resources :competitions, only: :show
+  resources :entries, only: :create do
+    post :resync, on: :member
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -28,8 +31,6 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-
-
 
   # Example resource route with sub-resources:
   #   resources :products do

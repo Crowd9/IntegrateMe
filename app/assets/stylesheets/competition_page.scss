@@ -1,0 +1,44 @@
+.competition-page {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+
+  > .name {
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: bold;
+    padding: 0.5rem 0;
+  }
+
+  > .entries-list {
+    flex-grow: 1;
+  }
+}
+
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  > .heading {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid gray;
+  }
+
+  > .entry {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+  }
+
+  > .empty {
+    margin: auto;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+  }
+}
