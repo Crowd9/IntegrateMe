@@ -1,0 +1,20 @@
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/GuardClause:
+  Enabled: false
+
+Style/RaiseArgs:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Rails:
+    Enabled: true
+  Exclude:
+    - "db/**/*"

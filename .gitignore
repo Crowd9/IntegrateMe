@@ -16,3 +16,7 @@
 !/log/.keep
 /tmp
 .idea
+
+/.vagrant
+
+/spec/fixtures/mail_chimp.yml

@@ -4,9 +4,19 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
-  post 'entries' => 'entries#create'
+  root 'app/welcome#index'
+  get ':competition_id/:permalink' => 'app/competitions#entrant_page', constraints: { competition_id: /\d+/ }
+  resources :competitions, only: :show, module: :app
+
+  namespace :api do
+    resources :competitions, only: :create
+    resources :entries, only: :create do
+      post :resync, on: :member
+    end
+    scope :mail_chimp do
+      get 'lists' => 'mail_chimp_proxy#lists'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -28,8 +38,6 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-
-
 
   # Example resource route with sub-resources:
   #   resources :products do

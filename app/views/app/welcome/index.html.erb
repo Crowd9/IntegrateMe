@@ -1,0 +1,90 @@
+<div
+  ng-controller="WelcomeController as ctrl"
+  ng-init="ctrl.init(<%= welcome_init(@competitions) %>)"
+  class="page welcome-page"
+>
+  <!-- TODO: Use separated controller for competition form -->
+  <form class="competition-form" ng-submit="ctrl.create_competition()">
+    <div class="heading">Add new competition</div>
+    <!-- TODO: Improve errors displaying -->
+    <div id="error_explanation" ng-if="ctrl.errors">
+      Sorry, ther was a problem saving your entry:
+      <ul>
+        <li ng-repeat="(field, errors) in ctrl.errors">
+          {{field}}:
+          <span ng-repeat="error in errors">{{error}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="form-field">
+      <label for="new_competition_name">Name</label>
+      <input
+        id="new_competition_name"
+        type="text"
+        name="name"
+        ng-model="ctrl.new_competition.name"
+       />
+    </div>
+    <div class="form-field">
+      <label for="new_competition_requires_entry_name">Requires entry name?</label>
+      <input
+        id="new_competition_requires_entry_name"
+        type="checkbox"
+        name="requires_entry_name"
+        ng-model="ctrl.new_competition.requires_entry_name"
+      />
+    </div>
+    <div class="form-field">
+      <label for="new_competition_runner_email">Runner email</label>
+      <input
+        id="new_competition_runner_email"
+        type="email"
+        name="runner_email"
+        ng-model="ctrl.new_competition.runner_email"
+       />
+    </div>
+    <div class="form-field">
+      <label for="new_competition_mail_chimp_api_key">MailChimp List</label>
+      <!-- TODO: Factor out mail-chimp-list-selector to a separated component -->
+      <div class="mail-chimp-list-selector">
+        <div class="api-key-input">
+          <input
+            id="new_competition_mail_chimp_api_key"
+            type="text"
+            name="mail_chimp_api_key"
+            ng-model="ctrl.new_competition.mail_chimp_api_key"
+            placeholder="Enter MailChimp api key"
+          />
+          <button type="button" name="fetch_lists" ng-click="ctrl.fetchLists()">></button>
+        </div>
+        <select
+          id="new_competition_mail_chimp_list_id"
+          ng-if="ctrl.mail_chimp_lists"
+          ng-disabled="ctrl.mail_chimp_lists.length === 0"
+          ng-model="ctrl.new_competition.mail_chimp_list_id"
+        >
+          <option value='' disabled>
+            {{ctrl.mail_chimp_lists.length === 0 ? "No lists available" : "Select a list"}}
+          </option>
+          <option ng-repeat="list in ctrl.mail_chimp_lists" value={{list.id}}>
+            {{list.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-field">
+      <span></span>
+      <button type="submit" name="submit">Create!</button>
+    </div>
+  </form>
+  <div class="competitions-list">
+    <div ng-if="ctrl.competitions.length > 0" class="heading">
+      Enter competitions below
+    </div>
+    <span ng-if="ctrl.competitions.length == 0" class="empty">No competitions available ;(</span>
+    <div ng-repeat="competition in ctrl.competitions" class="competition-item">
+      <a ng-href="{{competition.enter_path}}" class="name">{{competition.name}}</span>
+      <a ng-href="{{competition.stats_path}}" class="stats">(stats)</span>
+    </div>
+  </div>
+</div>

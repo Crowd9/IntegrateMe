@@ -1,0 +1,27 @@
+.mail-chimp-list-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  > .api-key-input {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    > input {
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+    button {
+      flex-shrink: 0;
+      border: 1px solid #dfdfdf;
+      border-left-width: 0;
+      background: transparent;
+      color: black;
+    }
+  }
+
+  > select {
+    margin-top: 0.2rem;
+  }
+}

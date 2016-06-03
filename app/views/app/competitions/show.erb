@@ -1,0 +1,17 @@
+<div
+  ng-controller="CompetitionController as ctrl"
+  ng-init="ctrl.init(<%= competition_init(@competition) %>)"
+  class="page competition-page"
+>
+  <div class="name">{{ctrl.competition.name}}</div>
+  <div  class="entries-list">
+    <div ng-if="ctrl.unsynced_entries.length > 0" class="heading">
+      Unsynced entries ({{ctrl.unsynced_entries.length}})
+    </div>
+    <span ng-if="ctrl.unsynced_entries.length == 0" class="empty">No unsynced entries</span>
+    <div ng-repeat="entry in ctrl.unsynced_entries" class="entry">
+      <span class="name">{{entry.email}}</span>
+      <button ng-click="ctrl.resync_entry(entry.id)" class="retry">Retry!</button>
+    </div>
+  </div>
+</div>
