@@ -1,18 +1,50 @@
-# Getting the app running
+# Intro
 
-1. bundle install
-2. rake db:migrate && RAILS_ENV=test rake db:migrate
-3. rake db:seed
-4. rspec
-5. rails s
+I'm newbie in ROR, so I split client and server.
+* server - provide simple REST API
+* client - manage browser side routing and communicate with API, like many other SPA
 
-# Integrate with MailChimp
-* Send through their name/email
-* Create/use your own MailChimp account if needed
-* Unit and Integration (actually sends to MailChimp) specs
+# Howto start
 
-# Notes
-* Similar to our real working environment, you won't be given all the requirements for a task.  It's up to the developer to be conscientious and discover requirements.
-* The idea of this test is to see if you can write production-ready code.  No nasty surprises/bugs.
-* If you decide not to do something due to time constraints then list it with the reason and suggested solution in your pull request.  If your app is missing something that we expected and you don't list it, we'll assume that you did not consider the requirement properly.
-* If you're unsure, ask questions.
+```bash
+# Server
+cd server
+bundle install
+rake db:migrate
+# RAILS_ENV=test rake db:migrate && rspec
+# Sorry I don't provide server side tests
+rails s
+
+# Client
+cd client
+npm install
+npm test
+npm start
+
+# Then open http://localhost:3001
+```
+
+# About solution
+
+* No registration and authorization
+* By default CORS allows request from `localhost:\d+`,
+  you can overade it: `export CORS='http://192.168.1.100:8080'`
+* Each API user (include `client`) can create new `competitions`,
+  get existed by `/api/competitions/:id` and create `entries`
+* When user try to create new `competition` server checks provided `mail_api_key` by Mailchimp API
+* On client I used angular commponents and commponents based routing -
+  because it is a simple way to use angular such as it was intended -
+  for building applications from small bricks.
+* When client PUSHes something to the server -
+  component which is the master of the process shows status of process -
+  to improve user experience.
+* Layout is made as simple as possible.
+  Consider it as a backbone, on which you can build anything.
+
+# Note
+
+To register new `competiotion` you need MailChimp API Key and one or more MailChimp MailLists
+* Go to [admin.mailchimp.com/account/api/](https://admin.mailchimp.com/account/api/) and create new API Key
+* Go to [admin.mailchimp.com/lists/](https://admin.mailchimp.com/lists/) and create new one.
+* Well done, use you API Key to Sync MailList in client interface
+  [http://localhost:3001/competitions/new](http://localhost:3001/competitions/new)

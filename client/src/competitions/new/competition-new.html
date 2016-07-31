@@ -1,0 +1,120 @@
+<form class="form-horizontal col-sm-6"
+      ng-submit="$ctrl.create()">
+
+  <!-- Direct Link -->
+  <legend>
+    <a ng-link="['CompetitionNew']">
+      New Competition
+    </a>
+  </legend>
+
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name"
+           class="col-sm-3 control-label">
+      Name:
+    </label>
+    <div class="col-sm-8">
+      <input id="name" required autofocus
+             class="form-control"
+             ng-model="$ctrl.newItem.name">
+    </div>
+  </div>
+
+  <!-- Owner Email -->
+  <div class="form-group">
+    <label for="owner_email"
+           class="col-sm-3 control-label">
+      Owner Email:
+    </label>
+    <div class="col-sm-8">
+      <input id="owner_email" required type="email"
+             class="form-control"
+             ng-model="$ctrl.newItem.owner_email">
+    </div>
+  </div>
+
+  <!-- Requires Entry Name -->
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <div class="checkbox">
+        <label>
+          <input id="requires_entry_name" type="checkbox"
+                 ng-model="$ctrl.newItem.requires_entry_name">
+          Requires Entry Name
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mail API Key & Sync Mail Lists! -->
+  <div class="form-group">
+    <label for="mail_api_key"
+           class="col-sm-3 control-label">
+      Mail API Key:
+    </label>
+    <div class="col-sm-8">
+      <div class="input-group">
+        <input id="mail_api_key" required
+               class="form-control"
+               placeholder="Enter API Key and do Sync!"
+               ng-model="$ctrl.newItem.mail_api_key">
+        <span class="input-group-btn">
+          <button class="btn btn-info"
+                  type="button"
+                  ng-click="$ctrl.syncMailLists()">
+            Sync Mail Lists!
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sync Process Indicator -->
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <app-process
+        app-process-status="$ctrl.syncMailLists.processCtrl.status"
+        app-process-errors="$ctrl.syncMailLists.processCtrl.errors"
+        app-process-state="$ctrl.syncMailLists.processCtrl.state">
+      </app-process>
+    </div>
+  </div>
+
+  <!-- Mail List Name -->
+  <div class="form-group">
+    <label for="mail_list_id"
+           class="col-sm-3 control-label">
+      Mail List Name:
+    </label>
+    <div class="col-sm-8">
+      <select id="mail_list_id" required
+              class="form-control"
+              ng-disabled="!$ctrl.mailLists || !$ctrl.mailLists.length"
+              ng-model="$ctrl.newItem.mail_list_id"
+              ng-options="list.id as list.name for list in $ctrl.mailLists">
+        <option value="" disabled></option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Create! -->
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <button type="submit" class="btn btn-success">
+        Create!
+      </button>
+    </div>
+  </div>
+
+  <!-- Create Process Indicator -->
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <app-process
+        app-process-status="$ctrl.create.processCtrl.status"
+        app-process-errors="$ctrl.create.processCtrl.errors"
+        app-process-state="$ctrl.create.processCtrl.state">
+      </app-process>
+    </div>
+  </div>
+</form>

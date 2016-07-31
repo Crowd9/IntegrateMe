@@ -1,0 +1,52 @@
+<form class="form-horizontal col-sm-6"
+      ng-submit="$ctrl.create()">
+  <!-- Form Title -->
+  <legend>New Entry</legend>
+
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name"
+           class="col-sm-3 control-label">
+      Name:
+    </label>
+    <div class="col-sm-8">
+      <input id="name" required autofocus
+             class="form-control"
+             ng-model="$ctrl.newItem.name"
+             ng-disabled="!$ctrl.appRequiresEntryName">
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email"
+           class="col-sm-3 control-label">
+      Email:
+    </label>
+    <div class="col-sm-8">
+      <input id="email" required type="email"
+             class="form-control"
+             ng-model="$ctrl.newItem.email">
+    </div>
+  </div>
+
+  <!-- Send! -->
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <button type="submit" class="btn btn-success">
+        Send!
+      </button>
+    </div>
+  </div>
+
+  <!-- Process Indicator -->
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <app-process
+        app-process-status="$ctrl.processCtrl.status"
+        app-process-errors="$ctrl.processCtrl.errors"
+        app-process-state="$ctrl.processCtrl.state">
+      </app-process>
+    </div>
+  </div>
+</form>

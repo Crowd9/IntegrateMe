@@ -1,0 +1,43 @@
+{
+  "name": "integrate-me-client",
+  "private": true,
+  "scripts": {
+    "test": "npm run eslint && npm run karma && npm run lcov-summary",
+    "start": "npm run lite-server",
+    "karma": "karma start tests/karma.runner.js",
+    "eslint": "eslint src tests/specs/ tests/mocks/ tests/karma.runner.js",
+    "lcov-summary": "lcov-summary tests/coverage/lcov.info",
+    "lite-server": "lite-server -c lite-server.json"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-loading-bar": "^0.9.0",
+    "angular-resource": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "ngcomponentrouter": "^2.1.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "babel-eslint": "^6.1.2",
+    "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
+    "debug": "^2.2.0",
+    "es6-shim": "^0.35.1",
+    "eslint": "^3.2.0",
+    "jquery": "^3.1.0",
+    "karma": "^1.1.2",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.0.5",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "lcov-summary": "^1.0.1",
+    "lite-server": "^2.2.2",
+    "lodash": "^4.14.1",
+    "mkdirp": "^0.5.1",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.5",
+    "supports-color": "^3.1.2"
+  }
+}
