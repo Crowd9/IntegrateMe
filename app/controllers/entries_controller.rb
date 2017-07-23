@@ -5,6 +5,9 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
 
     if @entry.save
+      subscribe_user = MailChimp.new
+      subscribe_user.subscribe_to_mail_chimp(@entry)
+
       render json: {success: true}
     else
       render json: {success: false, errors: @entry.errors}
