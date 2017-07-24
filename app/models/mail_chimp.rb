@@ -38,5 +38,20 @@ class MailChimp
       })
   end
 
+  def subscribe_from_competition_to_mail_chimp_list(entry, mail_chimp_api_key, mail_chimp_list_id)
 
+    fetch_latest_entry(entry)
+
+    gibbon = Gibbon::Request.new(api_key: mail_chimp_api_key, debug: false)
+
+    # gibbon.timeout = 30
+    # gibbon.open_time = 30
+
+    subscribe_user_to_mailing_list = gibbon.lists(mail_chimp_list_id).members.create(body:
+    {
+      email_address: entry.email,
+      status: "subscribed",
+      merge_fields: {FNAME: @first_name, LNAME: @last_name}
+    })
+  end
 end

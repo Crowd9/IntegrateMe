@@ -12,4 +12,13 @@
   <p>Seed your data!</p>
 <% end %>
 
-<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us16.list-manage.com","uuid":"a4a0afc9473945db7a9544af5","lid":"e52d04af7a"}) })</script>
+<h2>Competition configuration</h2>
+<% if @competitions.any? %>
+  <ul>
+    <% @competitions.each do |competition| %>
+      <li><%= link_to competition.name, competition_entrant_page(competition) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Seed your data!</p>
+<% end %>
