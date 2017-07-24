@@ -2,7 +2,7 @@ require 'sqlite3'
 require 'gibbon'
 
 class MailChimp
-  API_KEY = '' # Refer to the email please
+  API_KEY = ENV['API_KEY']
   LIST_ID = '48af1e84e4'
 
   def fetch_latest_entry(entry)
@@ -38,5 +38,5 @@ class MailChimp
       })
   end
 
-  
+
 end
