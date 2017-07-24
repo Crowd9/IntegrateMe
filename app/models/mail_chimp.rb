@@ -37,4 +37,6 @@ class MailChimp
       merge_fields: {FNAME: @first_name, LNAME: @last_name}
       })
   end
+
+  
 end
