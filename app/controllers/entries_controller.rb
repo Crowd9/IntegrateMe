@@ -5,6 +5,10 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
 
     if @entry.save
+      subscribe_user = MailChimp.new
+      # subscribe_user.subscribe_to_mail_chimp(@entry)
+      subscribe_user.subscribe_from_competition_to_mail_chimp_list(@entry, ENV['API_KEY'], ENV['NAME_AND_EMAIL_LIST_ID'])
+
       render json: {success: true}
     else
       render json: {success: false, errors: @entry.errors}

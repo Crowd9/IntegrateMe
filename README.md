@@ -1,3 +1,10 @@
+# Notes on Part 2 of the coding test
+
+## Sensitive data
+
+1. My API key and List IDs are stored in config/application.yml
+2. I'm using the gem *figaro*
+
 # Getting the app running
 
 1. bundle install

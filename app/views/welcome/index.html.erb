@@ -12,3 +12,13 @@
   <p>Seed your data!</p>
 <% end %>
 
+<h2>Competition configuration</h2>
+<% if @competitions.any? %>
+  <ul>
+    <% @competitions.each do |competition| %>
+      <li><%= link_to competition.name, competition_entrant_page(competition) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Seed your data!</p>
+<% end %>
