@@ -21,6 +21,6 @@ class Entry < ActiveRecord::Base
     end
 
     def requires_name
-      competition.requires_entry_name?
+      competition.requires_entry_name? rescue false
     end
 end
