@@ -1,12 +1,19 @@
 angular.module('integrate', []).controller('EntrantController', ($scope, $http) ->
   self = @
 
-  @init = (data) ->
-    self.competition = data.competition
-    self.entry = {competition_id: data.competition.id}
+  @init = (dataId) ->
+    $http.get("/api/v1/competitions/" + dataId).
+      success((res, status, headers, config) ->
+        self.competition = res.data
+        self.entry = competition_id: res.data.id
+      ).
+      error((data, status, headers, config) ->
+        alert(data)
+      )
+
 
   @submit = ->
-    $http.post("/entries", self.entry).
+    $http.post("/api/v1/entries", self.entry).
       success((data, status, headers, config) ->
 
         if data.success
@@ -14,10 +21,9 @@ angular.module('integrate', []).controller('EntrantController', ($scope, $http) 
         else
           self.errors = data.errors
 
-
       ).
       error((data, status, headers, config) ->
-        alert("ERROR!")
+        alert(data)
       )
 
   self

@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.9'
+# Rake 11.0.1 removes the last_comment method which rspec-core (< 3.4.4) uses
+gem 'rake', '< 11.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -17,10 +19,21 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 
+# ActiveModelSerializers brings convention over configuration to your JSON generation. see: https://github.com/rails-api/active_model_serializers
+gem 'active_model_serializers', '~> 0.10.0'
+# A plugin for versioning Rails based RESTful APIs. see: https://github.com/bploetz/versionist
+gem 'versionist', '~> 1.5.0'
+
+# Gibbon is an API wrapper for MailChimp's API.
+gem 'gibbon'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Slugging and permalink plugins for ActiveRecord
+gem 'friendly_id', '~> 5.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -44,4 +57,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

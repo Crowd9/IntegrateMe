@@ -1,4 +1,4 @@
-<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= entrant_init(@entry) %>)">
+<div ng-controller="EntrantController as ctrl" ng-init="ctrl.init(<%= @competition.id %>)">
   <h1>{{ctrl.competition.name}}</h1>
 
   <div ng-if="!ctrl.entry.completed">
@@ -6,7 +6,7 @@
 
     <form name="entry">
       <div id="error_explanation" ng-if="ctrl.errors">
-        Sorry, ther was a problem saving your entry:
+        Sorry, there was a problem saving your entry:
         <ul>
           <li ng-repeat="(field, errors) in ctrl.errors">
             {{field}}:

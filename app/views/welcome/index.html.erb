@@ -2,13 +2,22 @@
 
 <h2>Enter competitions below</h2>
 
-<% if @competitions.any? %>
+<% if flash[:error].present? %>
+  <div id="error_explanation">
+    <ul>
+      <li>
+        <span><%= flash[:error] %></span>
+      </li>
+    </ul>
+  </div>
+<% end %>
+
+<% if @competitions.exists? %>
   <ul>
     <% @competitions.each do |competition| %>
-      <li><%= link_to competition.name, competition_entrant_page(competition) %></li>
+      <li><%= link_to competition.name, competition_entrant_page_path(competition.slug) %></li>
     <% end %>
   </ul>
 <% else %>
-  <p>Seed your data!</p>
+  <p>There is no ongoing competition at the moment!</p>
 <% end %>
-

@@ -1,11 +1,12 @@
-class EntriesController < ApplicationController
+class Api::V1::EntriesController < ApplicationController
 
-  # POST /entries.json
+  # POST /api/v1/entries
   def create
     @entry = Entry.new(entry_params)
 
     if @entry.save
-      render json: {success: true}
+      MailchimpService.new.subscribe(@entry)
+      render json: {success: true, status: 200}
     else
       render json: {success: false, errors: @entry.errors}
     end
