@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
-  resources :entries
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  get ':competition_id/:permalink' => 'competitions#entrant_page', constraints: {competition_id: /\d+/}
-  post 'entries' => 'entries#create'
+
+  devise_for :users
+
+  get 'competitions/:slug/entrant' => 'competitions#entrant_page', as: :competition_entrant_page
+
+  resources :competitions, only: [:edit]
+
+  api_version :module => "API::V1", :path => {:value => "api/v1"}, defaults: {format: :json}, default: true do
+    resources :entries, only: [:create]
+    resources :competitions, only: [:show] do
+      get :mailchimp_lists, on: :member
+      post :subscribe_to_mailchimp_list, on: :member
+    end
+  end
+
+  get '*unmatched_route', to: 'application#render_404'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,58 @@
+<div class="container-sm border-box" ng-controller="EditController as ctrl">
+  <h2>Edit <%= @competition.name %></h2>
+  <%= link_to "Home", root_path %>
+  <form name="competition_edit" novalidate>
+
+      <div class="alert alert-danger" ng-if="ctrl.errors">
+        {{ctrl.errors}}
+      </div>
+
+      <ng-form class="form-horizontal" name="key_form">
+
+        <div class="form-group">
+          <label for="api_key" class="col-sm-2 control-label">API KEY</label>
+          <div class="col-sm-10">
+            <input id="api_key" name="api_key" class="form-control" placeholder="Enter api key" ng-model="ctrl.api_key" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-primary" value="Get MailChimp Lists" ng-disabled="key_form.$invalid" ng-click="ctrl.submitKey(<%= @competition.id %>)">
+          </div>
+        </div>
+
+      </ng-form>
+
+
+      <ng-form class="form-horizontal" name="list_form" ng-if="ctrl.show_lists">
+
+        <div class="form-group">
+          <label for="api_key" class="col-sm-2 control-label">Select List</label>
+          <div class="col-sm-10">
+            <select
+              name="mail_lists"
+              class="form-control"
+              ng-model="ctrl.selected_list"
+              ng-options="list.name for list in ctrl.lists"
+              required>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10 checkbox">
+            <label><input type="checkbox" ng-model="ctrl.assign_to_list">Assign all emails to list</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-primary" value="Save" ng-disabled="list_form.$invalid" ng-click="ctrl.saveList(<%= @competition.id %>)">
+          </div>
+        </div>
+
+      </ng-form>
+
+    </form>
+</div>

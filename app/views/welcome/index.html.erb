@@ -1,14 +1,36 @@
-<h1>Competition App</h1>
+<div class="container-sm border-box">
+  <h1>Competition App</h1>
 
-<h2>Enter competitions below</h2>
+  <% if current_user %>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :get %>
+  <% else %>
+    <%= link_to "Admin Login", new_user_session_path %>
+  <% end %>
 
-<% if @competitions.any? %>
-  <ul>
-    <% @competitions.each do |competition| %>
-      <li><%= link_to competition.name, competition_entrant_page(competition) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Seed your data!</p>
-<% end %>
+  <h3>Enter competitions below</h3>
 
+  <% if flash[:error].present? %>
+    <div id="error_explanation">
+      <ul>
+        <li>
+          <span><%= flash[:error] %></span>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @competitions.exists? %>
+    <ul>
+      <% @competitions.each do |competition| %>
+        <li>
+          <%= link_to competition.name, competition_entrant_page_path(competition.slug) %>
+          <% if current_user.present? %>
+            -
+            <%= link_to "Edit", edit_competition_path(competition.id) %></li>
+          <% end %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There is no ongoing competition at the moment!</p>
+  <% end %>
+</div>
