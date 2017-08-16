@@ -3,6 +3,10 @@ class Competition < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  # Settings
+  has_settings :mailchimp
+
+
   # Relations
   has_many :entries, inverse_of: :competition
 

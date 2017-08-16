@@ -14,4 +14,6 @@
   c = Competition.find_or_initialize_by(id: id)
   c.attributes = data
   c.save!
+
+  User.create(email: "admin@integrateme.com", password: "Apple:2017", password_confirmation: "Apple:2017")
 end

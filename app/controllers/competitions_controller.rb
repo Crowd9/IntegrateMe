@@ -1,6 +1,12 @@
 class CompetitionsController < ApplicationController
   # Callbacks
   before_action :find_competition, only: :entrant_page
+  before_action :authenticate_user!, only: :edit
+
+  # GET /competitions/:id/edit
+  def edit
+    @competition = Competition.find(params[:id])
+  end
 
   # GET /competitions/:slug/entrant
   def entrant_page

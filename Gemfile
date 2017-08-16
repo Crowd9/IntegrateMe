@@ -7,6 +7,8 @@ gem 'rails', '4.2.9'
 gem 'rake', '< 11.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+#Use Bootstrap style
+gem 'bootstrap-sass', '~> 3.3.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -35,6 +37,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Slugging and permalink plugins for ActiveRecord
 gem 'friendly_id', '~> 5.1.0'
 
+# Ruby gem to handle settings for ActiveRecord instances by storing them as serialized Hash in a separate database table.
+gem 'ledermann-rails-settings'
+
+# Authorization
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -51,6 +59,7 @@ group :development, :test do
   gem 'faker', '~> 1.8.4'
   gem 'factory_girl_rails', '~> 4.8.0'
   gem 'capybara', '~> 2.15'
+  gem 'jasmine'
 end
 
 group :development do

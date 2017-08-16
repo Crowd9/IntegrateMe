@@ -1,23 +1,36 @@
-<h1>Competition App</h1>
+<div class="container-sm border-box">
+  <h1>Competition App</h1>
 
-<h2>Enter competitions below</h2>
+  <% if current_user %>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :get %>
+  <% else %>
+    <%= link_to "Admin Login", new_user_session_path %>
+  <% end %>
 
-<% if flash[:error].present? %>
-  <div id="error_explanation">
+  <h3>Enter competitions below</h3>
+
+  <% if flash[:error].present? %>
+    <div id="error_explanation">
+      <ul>
+        <li>
+          <span><%= flash[:error] %></span>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @competitions.exists? %>
     <ul>
-      <li>
-        <span><%= flash[:error] %></span>
-      </li>
+      <% @competitions.each do |competition| %>
+        <li>
+          <%= link_to competition.name, competition_entrant_page_path(competition.slug) %>
+          <% if current_user.present? %>
+            -
+            <%= link_to "Edit", edit_competition_path(competition.id) %></li>
+          <% end %>
+      <% end %>
     </ul>
-  </div>
-<% end %>
-
-<% if @competitions.exists? %>
-  <ul>
-    <% @competitions.each do |competition| %>
-      <li><%= link_to competition.name, competition_entrant_page_path(competition.slug) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There is no ongoing competition at the moment!</p>
-<% end %>
+  <% else %>
+    <p>There is no ongoing competition at the moment!</p>
+  <% end %>
+</div>

@@ -84,4 +84,76 @@ feature "Home page" do
 
     expect(page).to have_content('Sorry, there was a problem saving your entry:')
   end
+
+  scenario "goes to login page and enter right credentials, login and edit competition with wrong api key" do
+    user = create(:user)
+
+    competition_name_email = create(:competition_name_email)
+    competition_email_only = create(:competition_email_only)
+
+    visit root_path
+
+    visit new_user_session_path
+
+    fill_in 'user_email', :with => user.email
+    fill_in 'user_password', :with => "Test:2017"
+
+    click_button("Log in")
+
+    first(:link, "Edit").click
+
+    expect(page).to have_content('Edit')
+
+    fill_in 'api_key', :with => "wrongapikey"
+
+    click_button("Get MailChimp Lists")
+
+    #expect(page).to have_content('Please provide valid Mailchimp API key.')
+  end
+
+  scenario "goes to edit competition page and enters right credentials, login and edit competition with right api key" do
+    user = create(:user)
+
+    competition_name_email = create(:competition_name_email)
+    competition_email_only = create(:competition_email_only)
+
+    visit root_path
+
+    visit new_user_session_path
+
+    fill_in 'user_email', :with => user.email
+    fill_in 'user_password', :with => "Test:2017"
+
+    click_button("Log in")
+
+    first(:link, "Edit").click
+
+    expect(page).to have_content('Edit')
+
+    fill_in 'api_key', :with => Rails.application.secrets.mailchimp[:api_key]
+
+    click_button("Get MailChimp Lists")
+
+    #select "nonprofit", :from => "mail_lists"
+
+
+  end
+
+  scenario "goes to edit competition page without entering right credentials and not rendered competition edit page" do
+    user = create(:user)
+
+    competition_name_email = create(:competition_name_email)
+    competition_email_only = create(:competition_email_only)
+
+    visit root_path
+
+    visit new_user_session_path
+
+    fill_in 'user[email]', :with => user.email
+    fill_in 'user[email]', :with => "wrongpassword"
+
+    click_button("Log in")
+
+    expect(page).not_to have_content('Edit')
+  end
 end

@@ -1,0 +1,10 @@
+.container-sm{
+	max-width: 600px;
+	margin: 10px auto;
+	padding: 15px;
+}
+
+.border-box{
+	@include border-radius(5px);
+	border: 1px solid $light-grey;	
+}
