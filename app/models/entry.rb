@@ -25,6 +25,11 @@ class Entry < ActiveRecord::Base
   end
 
   def subscribe_to_mailchimp
-    MailchimpService.new.subscribe(name, email)
+    begin
+      MailchimpService.new.subscribe(name, email)
+    rescue
+      self.errors.add :email, 'An error occurred. Try again later'
+      throw :abort
+    end
   end
 end

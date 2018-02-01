@@ -35,8 +35,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.3.3'
+  # factory_bot provides a framework and DSL for defining and using factories - less error-prone, more explicit, and all-around easier to work with than fixtures.
   gem 'factory_bot_rails', '~> 4.8'
+  # Faker is used to easily generate fake data: names, addresses, phone numbers, etc
   gem 'faker', '~> 1.8', '>= 1.8.7'
+  # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.
+  gem 'webmock', '~> 3.3'
 end
 
 group :development do
