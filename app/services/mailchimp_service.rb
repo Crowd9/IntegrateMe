@@ -8,7 +8,7 @@ class MailchimpService
     data = { email_address: email, status: 'subscribed' }
 
     if name.present?
-      first_name, last_name = name.split(' ')
+      first_name, last_name = name.split(' ', 2)
       data[:merge_fields] = { FNAME: first_name, LNAME: last_name || '' }
     end
 
