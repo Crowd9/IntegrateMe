@@ -45,3 +45,5 @@ group :development do
   gem 'spring'
 end
 
+# A wrapper for MailChimp API 3.0 and Export API
+gem 'gibbon', '~> 3.2'
