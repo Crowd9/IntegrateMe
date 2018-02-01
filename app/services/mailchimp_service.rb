@@ -9,7 +9,7 @@ class MailchimpService
 
     if name.present?
       first_name, last_name = name.split(' ', 2)
-      data[:merge_fields] = { FNAME: first_name, LNAME: last_name || '' }
+      data[:merge_fields] = { FNAME: first_name || '', LNAME: last_name || '' }
     end
 
     @gibbon.lists(@list_id).members.create(body: data)
