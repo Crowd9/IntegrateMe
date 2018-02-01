@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20160125020403) do
 
   create_table "entries", force: :cascade do |t|
     t.integer  "competition_id"
-    t.text     "name"
-    t.text     "email"
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

@@ -47,3 +47,6 @@ end
 
 # A wrapper for MailChimp API 3.0 and Export API
 gem 'gibbon', '~> 3.2'
+
+# Automatic Ruby code style checking tool
+gem 'rubocop', '~> 0.52.1', require: false

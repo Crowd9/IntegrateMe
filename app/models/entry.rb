@@ -4,19 +4,27 @@ class Entry < ActiveRecord::Base
   belongs_to :competition
 
   before_validation :clean_email
+  before_save :subscribe_to_mailchimp
 
   validates_presence_of :competition, inverse_of: :entries
   validates_presence_of :email
-  validates_format_of :email, :with => EMAIL_REGEX, allow_blank: true, allow_nil: true
+  validates_format_of :email, with: EMAIL_REGEX, allow_blank: true, allow_nil: true
   validates_presence_of :name, if: :requires_name
-  validates_uniqueness_of :email, scope: :competition, message: "has already entered this competition"
+  validates_uniqueness_of :email,
+                          scope: :competition,
+                          message: 'has already entered this competition'
 
   private
-    def clean_email
-      self.email = email.downcase.strip if email.present?
-    end
 
-    def requires_name
-      competition.requires_entry_name?
-    end
+  def clean_email
+    self.email = email.downcase.strip if email.present?
+  end
+
+  def requires_name
+    competition.requires_entry_name?
+  end
+
+  def subscribe_to_mailchimp
+    MailchimpService.new.subscribe(name, email)
+  end
 end
